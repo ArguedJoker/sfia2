@@ -3,21 +3,15 @@ services:
   frontend:
     image: frontend
     build: ./frontend
-    ports:
-      - 5000:5000
   backend: 
     image: backend
     build: ./backend
-    ports:
-      - 5001:5001
     environment:
       DATABASE_URI: mysql+pymysql://root:password@database:3306/users
       SECRET_KEY: $(SECRET_KEY)
   database:
     image: database
     build: ./database
-    ports: 
-      - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=$(DB_PASSWORD)
       - MYSQL_DATABASE="users"
