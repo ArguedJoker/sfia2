@@ -7,13 +7,13 @@ services:
     image: backend
     build: ./backend
     environment:
-      DATABASE_URI: mysql+pymysql://root:password@database:3306/users
-      SECRET_KEY: $(SECRET_KEY)
+      DATABASE_URI: ${DATABASE_URI}
+      SECRET_KEY: ${SECRET_KEY}
   database:
     image: database
     build: ./database
     environment:
-      - MYSQL_ROOT_PASSWORD=$(DB_PASSWORD)
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_DATABASE="users"
   nginx:
     image: nginx:latest
