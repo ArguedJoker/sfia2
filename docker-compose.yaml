@@ -14,8 +14,6 @@ services:
     build: ./database
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
   nginx:
     image: nginx:latest
     ports:
