@@ -11,7 +11,7 @@ services:
     ports:
       - 5001:5001
     environment:
-      DATABASE_URI: $(DATABASE_URI)
+      DATABASE_URI: mysql+pymysql://root:password@database:3306/users
       SECRET_KEY: $(SECRET_KEY)
   database:
     image: database
@@ -20,4 +20,4 @@ services:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=$(DB_PASSWORD)
-      - MYSQL_DATABASE="flask-db"
+      - MYSQL_DATABASE="users"
