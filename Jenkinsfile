@@ -86,7 +86,7 @@ pipeline{
             }
             stage('Deploy App'){
                 steps{
-                    sh "cd sfia2 && sudo docker-compose pull && sudo -E DB_PASSWORD=${DB_PASSWORD} docker-compose up -d"
+                    sh "cd sfia2 && sudo docker-compose pull && sudo DB_PASSWORD=${DB_PASSWORD} docker-compose up -d"
                 }
             }
         }    
