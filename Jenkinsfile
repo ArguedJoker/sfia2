@@ -8,8 +8,8 @@ pipeline{
             stage('Install Docker and Docker-Compose'){
                         steps{
                                 sh '''
-                                ssh rpscdevelopments@34.89.103.14 <<EOF
-                                curl https://get.docker.com | sudo bash
+                                ssh -t rpscdevelopments@34.89.103.14 <<EOF
+                                curl https://get.docker.com | bash
                                 sudo usermod -aG docker $(whoami)
                                 sudo curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
                                 sudo chmod +x /usr/local/bin/docker-compose
