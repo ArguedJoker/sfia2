@@ -65,7 +65,7 @@ EOF
                 }          
             }
 
-            stage('Build database Image'){
+            stage('Build production database Image'){
                 steps{
                     script{
                         if (env.rollback == 'false'){
@@ -86,7 +86,6 @@ EOF
                     ssh rpscdevelopments@34.89.103.14 <<EOF
                     cd sfia2
                     docker-compose up -d
-                    sudo chmod 666 /var/run/docker.soc
 EOF
                     '''
                 }

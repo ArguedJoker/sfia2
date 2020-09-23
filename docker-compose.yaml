@@ -3,14 +3,18 @@ services:
   frontend:
     image: frontend
     build: ./frontend
+    depends_on: 
+      - backend
   backend: 
     image: backend
     build: ./backend
     environment:
       DATABASE_URI: ${DATABASE_URI}
       SECRET_KEY: ${SECRET_KEY}
+    depends_on:
+      - database
   database:
-    image: mysql
+    image: database
     build: ./database
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
