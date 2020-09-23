@@ -42,7 +42,7 @@ EOF
                             sh '''
                             ssh rpscdevelopments@34.89.103.14 <<EOF
                             cd sfia2/frontend
-                            docker build -t arguedjoker/frontend .
+                            docker build -t frontend .
 EOF
                             '''
                         }
@@ -57,7 +57,7 @@ EOF
                             sh '''
                             ssh rpscdevelopments@34.89.103.14 <<EOF
                             cd sfia2/backend
-                            docker build -t arguedjoker/backend .
+                            docker build -t backend .
 EOF
                             '''
                         }
@@ -72,7 +72,7 @@ EOF
                             sh '''
                             ssh rpscdevelopments@34.89.103.14 <<EOF
                             cd sfia/database
-                            docker build -t arguedjoker/mysql .
+                            docker build -t mysql .
 EOF
                             '''
                         }
