@@ -32,5 +32,5 @@ services:
         source: ./nginx/nginx.conf
         target: /etc/nginx/nginx.conf
     depends_on: 
-      -frontend
+      - frontend
   
