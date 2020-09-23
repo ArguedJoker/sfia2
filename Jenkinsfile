@@ -8,28 +8,38 @@ pipeline{
             stage('Install Docker and Docker-Compose'){
                         steps{
                                 sh '''
-<<<<<<< HEAD
-                                ssh -t rpscdevelopments@34.89.103.14 <<EOF
-                                curl https://get.docker.com | bash
-                                usermod -aG docker $(whoami)
-                                curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-                                chmod +x /usr/local/bin/docker-compose
-=======
                                 ssh rpscdevelopments@34.89.103.14 <<EOF
                                 curl https://get.docker.com | sudo bash
                                 sudo usermod -aG docker $(whoami)
                                 sudo curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
                                 sudo chmod +x /usr/local/bin/docker-compose
->>>>>>> parent of 84f7ab6... removed sudo
 EOF                                 
                                 '''
                         }
                 }
+            stage('Clone repository and cd into directory'){
+                steps{
+                    script{
+                            sh '''
+                            ssh rpscdevelopments@34.89.103.14 <<EOF
+                            git clone https://github.com/ArguedJoker/sfia2.git
+                            cd sfia2
+EOF
+                            '''
+                        }
+                    }
+                }          
+            }
             stage('Build frontend Image'){
                 steps{
                     script{
                         if (env.rollback == 'false'){
-                            image = docker.build("arguedjoker/frontend")
+                            sh '''
+                            ssh rpscdevelopments@34.89.103.14 <<EOF
+                            cd sfia2/frontend
+                            docker build -t arguedjoker/frontend .
+EOF
+                            '''
                         }
                     }
                 }          
@@ -49,7 +59,12 @@ EOF
                 steps{
                     script{
                         if (env.rollback == 'false'){
-                            image = docker.build("arguedjoker/backend")
+                            sh '''
+                            ssh rpscdevelopments@34.89.103.14 <<EOF
+                            cd sfia2/backend
+                            docker build -t arguedjoker/backend .
+EOF
+                            '''
                         }
                     }
                 }          
@@ -69,7 +84,12 @@ EOF
                 steps{
                     script{
                         if (env.rollback == 'false'){
-                            image = docker.build("arguedjoker/database")
+                            sh '''
+                            ssh rpscdevelopments@34.89.103.14 <<EOF
+                            cd sfia/database
+                            docker build -t arguedjoker/database .
+EOF
+                            '''
                         }
                     }
                 }          
@@ -96,7 +116,12 @@ EOF
             }
             stage('Deploy App'){
                 steps{
-                    sh "docker-compose up -d"
+                    sh '''
+                    ssh rpscdevelopments@34.89.103.14 <<EOF
+                    cd sfia2
+                    docker-compose up -d
+EOF
+                    '''
                 }
             }
         }    
