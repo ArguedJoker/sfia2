@@ -5,6 +5,7 @@ services:
     build: ./frontend
     depends_on: 
       - backend
+
   backend: 
     image: backend
     build: ./backend
@@ -12,12 +13,14 @@ services:
       DATABASE_URI: ${DATABASE_URI}
       SECRET_KEY: ${SECRET_KEY}
     depends_on:
-      - database
+      - mysql
+
   database:
-    image: database
+    image: mysql
     build: ./database
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+
   nginx:
     image: nginx:latest
     ports:
@@ -28,4 +31,6 @@ services:
       - type: bind
         source: ./nginx/nginx.conf
         target: /etc/nginx/nginx.conf
+    depends_on: 
+      -frontend
   
