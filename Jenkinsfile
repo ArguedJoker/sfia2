@@ -124,7 +124,7 @@ EOF
                     }
                 }          
             }
-            
+
             stage('Deploy App'){
                 steps{
                     sh '''
@@ -136,3 +136,4 @@ EOF
                 }
             }
         }    
+    }
