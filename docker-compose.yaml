@@ -1,16 +1,16 @@
 version: '3.7'
 services:
   frontend:
-    image: arguedjoker/frontend
+    image: frontend
     build: ./frontend
   backend: 
-    image: arguedjoker/backend
+    image: backend
     build: ./backend
     environment:
       DATABASE_URI: ${DATABASE_URI}
       SECRET_KEY: ${SECRET_KEY}
   database:
-    image: arguedjoker/database
+    image: mysql
     build: ./database
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
