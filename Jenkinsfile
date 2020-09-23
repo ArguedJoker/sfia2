@@ -71,19 +71,9 @@ EOF
                             sh '''
                             ssh rpscdevelopments@34.89.103.14 <<EOF
                             cd sfia/database
-                            docker build -t arguedjoker/database .
+                            docker build -t arguedjoker/mysql .
 EOF
                             '''
-                        }
-                    }
-                }          
-            }
-
-            stage('Build nginx Image'){
-                steps{
-                    script{
-                        if (env.rollback == 'false'){
-                            image = docker.build("nginx:latest")
                         }
                     }
                 }          
