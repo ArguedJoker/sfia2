@@ -72,7 +72,7 @@ EOF
                             sh '''
                             ssh rpscdevelopments@34.89.103.14 <<EOF
                             cd sfia/database
-                            docker build -t mysql .
+                            docker build -t database .
 EOF
                             '''
                         }
