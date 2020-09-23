@@ -13,10 +13,10 @@ services:
       DATABASE_URI: ${DATABASE_URI}
       SECRET_KEY: ${SECRET_KEY}
     depends_on:
-      - mysql
+      - database
 
   database:
-    image: mysql
+    image: database
     build: ./database
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
