@@ -4,7 +4,9 @@ pipeline{
             app_version = 'v1'
             rollback = 'false'
         }
+
         stages{
+
             stage('Install Docker and Docker-Compose'){
                         steps{
                                 sh '''
@@ -17,6 +19,7 @@ EOF
                                 '''
                         }
                 }
+
             stage('Clone repository and cd into directory'){
                 steps{
                     script{
@@ -30,6 +33,7 @@ EOF
                     }
                 }          
             }
+
             stage('Build frontend Image'){
                 steps{
                     script{
@@ -44,6 +48,7 @@ EOF
                     }
                 }          
             }
+
             stage('Tag & Push frontend Image'){
                 steps{
                     script{
@@ -55,6 +60,7 @@ EOF
                     }
                 }          
             }
+
             stage('Build backend Image'){
                 steps{
                     script{
@@ -69,6 +75,7 @@ EOF
                     }
                 }          
             }
+
             stage('Tag & Push backend Image'){
                 steps{
                     script{
@@ -80,6 +87,7 @@ EOF
                     }
                 }          
             }
+
             stage('Build database Image'){
                 steps{
                     script{
@@ -94,6 +102,7 @@ EOF
                     }
                 }          
             }
+
             stage('Tag & Push database Image'){
                 steps{
                     script{
@@ -105,6 +114,7 @@ EOF
                     }
                 }          
             }
+
             stage('Build nginx Image'){
                 steps{
                     script{
@@ -114,6 +124,7 @@ EOF
                     }
                 }          
             }
+            
             stage('Deploy App'){
                 steps{
                     sh '''
