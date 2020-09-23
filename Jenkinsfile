@@ -44,6 +44,17 @@ EOF
                     }
                 }          
             }
+            stage('Tag & Push frontend Image'){
+                steps{
+                    script{
+                        if (env.rollback == 'false'){
+                            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+                                image.push("${env.app_version}")
+                            }
+                        }
+                    }
+                }          
+            }
             stage('Build backend Image'){
                 steps{
                     script{
@@ -58,6 +69,17 @@ EOF
                     }
                 }          
             }
+            stage('Tag & Push backend Image'){
+                steps{
+                    script{
+                        if (env.rollback == 'false'){
+                            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+                                image.push("${env.app_version}")
+                            }
+                        }
+                    }
+                }          
+            }
             stage('Build database Image'){
                 steps{
                     script{
@@ -68,6 +90,17 @@ EOF
                             docker build -t arguedjoker/database .
 EOF
                             '''
+                        }
+                    }
+                }          
+            }
+            stage('Tag & Push database Image'){
+                steps{
+                    script{
+                        if (env.rollback == 'false'){
+                            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+                                image.push("${env.app_version}")
+                            }
                         }
                     }
                 }          
@@ -92,4 +125,3 @@ EOF
                 }
             }
         }    
-}
