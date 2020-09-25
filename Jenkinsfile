@@ -86,7 +86,9 @@ EOF
                     sh '''
                     ssh rpscdevelopments@34.89.103.14 <<EOF
                     cd sfia2
-                    docker-compose up -d
+                    sudo -E DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} MYSQL_ROOT_PASSWORD={DB_PASSWORD}
+                    docker-compose pull && docker-compose up -d
+                    docker-compose logs
 EOF
                     '''
                 }

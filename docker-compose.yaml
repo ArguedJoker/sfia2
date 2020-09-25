@@ -3,6 +3,9 @@ services:
   frontend:
     image: frontend
     build: ./frontend
+    ports:
+      - target: 5000
+      -published: 5000
     depends_on: 
       - backend
 
@@ -12,6 +15,9 @@ services:
     environment:
       DATABASE_URI: ${DATABASE_URI}
       SECRET_KEY: ${SECRET_KEY}
+    ports:
+      - target: 5001
+      - published: 5001
     depends_on:
       - database
 
