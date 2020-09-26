@@ -11,7 +11,7 @@ pipeline{
                 steps{
                     script{
                         sh '''
-                        ssh -tt rpscdevelopments@34.89.103.14 <<EOF
+                        ssh rpscdevelopments@34.89.103.14 /bin/bash <<EOF
                         curl https://get.docker.com | sudo bash
                         sudo usermod -aG docker $(whoami)
                         sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
