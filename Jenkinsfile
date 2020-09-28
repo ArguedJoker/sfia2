@@ -41,7 +41,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@35.197.208.214 <<EOF
+                            ssh rpscdevelopments@3.197.208.214 <<EOF
                             cd sfia2/frontend
                             docker build -t frontend .
 EOF
