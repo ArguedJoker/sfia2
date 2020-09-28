@@ -11,7 +11,7 @@ pipeline{
                 steps{
                     script{
                         sh '''
-                        ssh rpscdevelopments@35.197.208.214 /bin/bash <<'EOT'
+                        ssh rpscdevelopments@35.197.208.214 <<'EOT'
                         curl https://get.docker.com | sudo bash
                         sudo usermod -aG docker $(whoami)
                         sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -41,7 +41,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@.197.208.214 <<EOF
+                            ssh rpscdevelopments@35.197.208.214 <<EOF
                             cd sfia2/frontend
                             docker build -t frontend .
 EOF
