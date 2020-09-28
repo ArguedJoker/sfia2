@@ -11,7 +11,7 @@ pipeline{
                 steps{
                     script{
                         sh '''
-                        ssh rpscdevelopments@34.89.103.14 /bin/bash <<'EOT'
+                        ssh rpscdevelopments@35.197.208.214 /bin/bash <<'EOT'
                         curl https://get.docker.com | sudo bash
                         sudo usermod -aG docker $(whoami)
                         sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -27,7 +27,7 @@ EOT
                 steps{
                     script{
                             sh '''
-                            ssh rpscdevelopments@34.89.103.14 <<EOF
+                            ssh rpscdevelopments@35.197.208.214 <<EOF
                             git clone https://github.com/ArguedJoker/sfia2.git
                             cd sfia2
 EOF
@@ -41,7 +41,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@34.89.103.14 <<EOF
+                            ssh rpscdevelopments@35.197.208.214 <<EOF
                             cd sfia2/frontend
                             docker build -t frontend .
 EOF
@@ -56,7 +56,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@34.89.103.14 <<EOF
+                            ssh rpscdevelopments@35.197.208.214 <<EOF
                             cd sfia2/backend
                             docker build -t backend .
 EOF
@@ -71,7 +71,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@34.89.103.14 <<EOF
+                            ssh rpscdevelopments@35.197.208.214 <<EOF
                             cd sfia/database
                             docker build -t database .
 EOF
@@ -84,7 +84,7 @@ EOF
             stage('Deploy App'){
                 steps{
                     sh '''
-                    ssh rpscdevelopments@34.89.103.14 <<EOF
+                    ssh rpscdevelopments@35.197.208.214 <<EOF
                     cd sfia2
                     sudo -E DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} MYSQL_ROOT_PASSWORD={DB_PASSWORD}
                     docker-compose pull && docker-compose up -d
