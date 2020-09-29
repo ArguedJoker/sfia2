@@ -3,9 +3,6 @@ services:
   frontend:
     image: frontend
     build: ./frontend
-    ports:
-      - target: 5000
-      -published: 5000
     depends_on: 
       - backend
 
@@ -13,11 +10,9 @@ services:
     image: backend
     build: ./backend
     environment:
+      TEST_DATABASE_URI: $(TEST_DATABASE_URI)
       DATABASE_URI: ${DATABASE_URI}
       SECRET_KEY: ${SECRET_KEY}
-    ports:
-      - target: 5001
-      - published: 5001
     depends_on:
       - database
 
@@ -32,7 +27,6 @@ services:
     ports:
       - target: 80
         published: 80
-        protocol: tcp
     volumes:
       - type: bind
         source: ./nginx/nginx.conf
