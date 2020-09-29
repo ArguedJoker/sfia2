@@ -16,6 +16,7 @@ pipeline{
                         sudo usermod -aG docker $(whoami)
                         sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
                         sudo chmod +x /usr/local/bin/docker-compose
+                        sudo chmod 666 /var/run/docker.sock
 EOT                                 
                         '''
                     }                        
@@ -86,7 +87,10 @@ EOF
                     sh '''
                     ssh rpscdevelopments@35.197.208.214 <<EOF
                     cd sfia2
-                    sudo -E DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} MYSQL_ROOT_PASSWORD={DB_PASSWORD}
+                    export DATABASE_URI=${DATABASE_URI}
+                    export TEST_DATABASE_URI=${TEST_DATABASE_URI} 
+                    export SECRET_KEY=${SECRET_KEY} 
+                    export MYSQL_ROOT_PASSWORD={DB_PASSWORD} 
                     docker-compose pull && docker-compose up -d
                     docker-compose logs
 EOF
