@@ -10,7 +10,7 @@ pipeline{
             stage('Install Docker and Docker-Compose'){
                 steps{
                         sh '''
-                        ssh ubuntu@ip-172-30-0-80 <<EOF
+                        ssh ubuntu@ip-172-30-0-80 bin/bash <<EOF
                         curl https://get.docker.com | sudo bash
                         sudo usermod -aG docker $(whoami)
                         sudo apt update
