@@ -38,39 +38,45 @@ EOF
 
         stage('Build frontend Image'){
             steps{
-                if (env.rollback == 'false'){
-                sh '''
-                ssh ubuntu@ip-172-30-0-80 <<EOF
-                cd sfia2/frontend
-                docker build -t frontend .
+                script{
+                    if (env.rollback == 'false'){
+                    sh '''
+                    ssh ubuntu@ip-172-30-0-80 <<EOF
+                    cd sfia2/frontend
+                    docker build -t frontend .
 EOF
-                '''
+                    '''
+                    }
                 }
             }          
         }
 
         stage('Build backend Image'){
             steps{
-                if (env.rollback == 'false'){
-                sh '''
-                ssh ubuntu@ip-172-30-0-80 <<EOF
-                cd sfia2/backend
-                docker build -t backend .
+                script{
+                    if (env.rollback == 'false'){
+                    sh '''
+                    ssh ubuntu@ip-172-30-0-80 <<EOF
+                    cd sfia2/backend
+                    docker build -t backend .
 EOF
-                '''
+                    '''
+                    }
                 }
             }          
         }
 
         stage('Build production database Image'){
             steps{
-                if (env.rollback == 'false'){
-                sh '''
-                ssh ubuntu@ip-172-30-0-80 <<EOF
-                cd sfia/database
-                docker build -t database .
+                script{
+                    if (env.rollback == 'false'){
+                    sh '''
+                    ssh ubuntu@ip-172-30-0-80 <<EOF
+                    cd sfia/database
+                    docker build -t database .
 EOF
-                '''
+                    '''
+                    }
                 }
             }          
         }
