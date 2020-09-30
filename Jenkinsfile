@@ -9,19 +9,19 @@ pipeline{
 
             stage('Install Docker and Docker-Compose'){
                 steps{
-                    sh '''
-                    ssh ubuntu@ip-172-30-0-80 <<EOF
-                    curl https://get.docker.com | sudo bash
-                    sudo usermod -aG docker $(whoami)
-                    sudo apt update
-                    sudo apt install
-                    sudo apt install -y curl jq
-                    version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')
-                    sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-                    sudo chmod +x /usr/local/bin/docker-compose
-                    sudo chmod 666 /var/run/docker.sock
+                        sh '''
+                        ssh ubuntu@ip-172-30-0-80 <<EOF
+                        curl https://get.docker.com | sudo bash
+                        sudo usermod -aG docker $(whoami)
+                        sudo apt update
+                        sudo apt install
+                        sudo apt install -y curl jq
+                        version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')
+                        sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                        sudo chmod +x /usr/local/bin/docker-compose
+                        sudo chmod 666 /var/run/docker.sock
 EOF                                 
-                    '''
+                        '''
                         
                 }
             }
@@ -29,12 +29,12 @@ EOF
 
             stage('Clone repository and cd into directory'){
                 steps{
-                        sh '''
-                        ssh ubuntu@ip-172-30-0-80 <<EOF
-                        git clone https://github.com/ArguedJoker/sfia2.git
-                        cd sfia2
+                            sh '''
+                            ssh ubuntu@ip-172-30-0-80 <<EOF
+                            git clone https://github.com/ArguedJoker/sfia2.git
+                            cd sfia2
 EOF
-                        '''
+                            '''
                     }
                 }          
 
@@ -42,26 +42,28 @@ EOF
                 steps{
 
                         if (env.rollback == 'false'){
-                        sh '''
-                        ssh ubuntu@ip-172-30-0-80 <<EOF
-                        cd sfia2/frontend
-                        docker build -t frontend .
+                            sh '''
+                            ssh ubuntu@ip-172-30-0-80 <<EOF
+                            cd sfia2/frontend
+                            docker build -t frontend .
 EOF
-                        '''
-                    }
+                            '''
+                        }
+
                 }          
             }
 
             stage('Build backend Image'){
                 steps{
+
                         if (env.rollback == 'false'){
-                        sh '''
-                        ssh ubuntu@ip-172-30-0-80 <<EOF
-                        cd sfia2/backend
-                        docker build -t backend .
+                            sh '''
+                            ssh ubuntu@ip-172-30-0-80 <<EOF
+                            cd sfia2/backend
+                            docker build -t backend .
 EOF
-                        '''
-                    }
+                            '''
+                        }
 
                 }          
             }
@@ -70,14 +72,14 @@ EOF
                 steps{
 
                         if (env.rollback == 'false'){
-                        sh '''
-                        ssh ubuntu@ip-172-30-0-80 <<EOF
-                        cd sfia/database
-                        docker build -t database .
+                            sh '''
+                            ssh ubuntu@ip-172-30-0-80 <<EOF
+                            cd sfia/database
+                            docker build -t database .
 EOF
-                        '''
+                            '''
+                        }
 
-                    }
                 }          
             }
 
@@ -94,8 +96,8 @@ EOF
                     docker-compose logs
 EOF
                     '''
+                }
             }
         }
-    }
-}        
+    }     
      
