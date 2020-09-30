@@ -11,7 +11,7 @@ pipeline{
                 steps{
                     script{
                         sh '''
-                        ssh rpscdevelopments@35.189.94.141 /bin/bash <<'EOT'
+                        ssh ubuntu@18.130.136.43 /bin/bash <<'EOT'
                         curl https://get.docker.com | sudo bash
                         sudo usermod -aG docker $(whoami)
                         sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -28,7 +28,7 @@ EOT
                 steps{
                     script{
                             sh '''
-                            ssh rpscdevelopments@35.189.94.141 <<EOF
+                            ssh ubuntu@18.130.136.43 <<EOF
                             git clone https://github.com/ArguedJoker/sfia2.git
                             cd sfia2
 EOF
@@ -42,7 +42,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@35.189.94.141 <<EOF
+                            ssh ubuntu@18.130.136.43 <<EOF
                             cd sfia2/frontend
                             docker build -t frontend .
 EOF
@@ -57,7 +57,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@35.189.94.141 <<EOF
+                            ssh ubuntu@18.130.136.43 <<EOF
                             cd sfia2/backend
                             docker build -t backend .
 EOF
@@ -72,7 +72,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@35.189.94.141 <<EOF
+                            ssh ubuntu@18.130.136.43 <<EOF
                             cd sfia/database
                             docker build -t database .
 EOF
@@ -85,7 +85,7 @@ EOF
             stage('Deploy App'){
                 steps{
                     sh '''
-                    ssh rpscdevelopments@35.189.94.141 <<EOF
+                    ssh ubuntu@18.130.136.43 <<EOF
                     cd sfia2
                     export DATABASE_URI=${DATABASE_URI}
                     export TEST_DATABASE_URI=${TEST_DATABASE_URI} 
