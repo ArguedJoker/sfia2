@@ -9,6 +9,7 @@ pipeline{
 
             stage('Install Docker and Docker-Compose'){
                 steps{
+                    script{
                         sh '''
                         ssh ubuntu@ip-172-30-0-80 <<EOF
                         curl https://get.docker.com | sudo bash
@@ -22,25 +23,27 @@ pipeline{
                         sudo chmod 666 /var/run/docker.sock
 EOF                                 
                         '''
-                        
+                    }                        
                 }
             }
             
 
             stage('Clone repository and cd into directory'){
                 steps{
+                    script{
                             sh '''
                             ssh ubuntu@ip-172-30-0-80 <<EOF
                             git clone https://github.com/ArguedJoker/sfia2.git
                             cd sfia2
 EOF
                             '''
+                        }
                     }
                 }          
 
             stage('Build frontend Image'){
                 steps{
-
+                    script{
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80 <<EOF
@@ -49,13 +52,13 @@ EOF
 EOF
                             '''
                         }
-
+                    }
                 }          
             }
 
             stage('Build backend Image'){
                 steps{
-
+                    script{
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80 <<EOF
@@ -64,13 +67,13 @@ EOF
 EOF
                             '''
                         }
-
+                    }
                 }          
             }
 
             stage('Build production database Image'){
                 steps{
-
+                    script{
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80 <<EOF
@@ -79,7 +82,7 @@ EOF
 EOF
                             '''
                         }
-
+                    }
                 }          
             }
 
@@ -99,5 +102,5 @@ EOF
                 }
             }
         }
-    }     
+}     
      
