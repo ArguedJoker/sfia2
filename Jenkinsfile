@@ -20,10 +20,9 @@ pipeline{
                     sudo chmod 666 /var/run/docker.sock
 EOF
                     '''
-  
+                }
             }
-        }
-            stage('clone repo and change directory'){
+            stage('clone repository and cd into directory'){
                 steps{
                     sh '''
                     ssh ubuntu@ip-172-30-0-80 <<EOF
@@ -31,10 +30,9 @@ EOF
                     cd sfia2
 EOF
                     '''
-            }
-        }
-      
-            stage('Build frontend Image'){
+                }
+            }    
+            stage('Build Frontend Image'){
                 steps{
                     script{
                         if (env.rollback == 'false'){
@@ -48,8 +46,7 @@ EOF
                     }
                 }          
             }
-
-            stage('Build backend Image'){
+            stage('Build Backend Image'){
                 steps{
                     script{
                         if (env.rollback == 'false'){
@@ -64,13 +61,27 @@ EOF
                 }          
             }
 
-            stage('Build database Image'){
+            stage('Build Database Image'){
                 steps{
                     script{
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80<<EOF
-                            cd ~/sfia2/database
+                            cd ~/sfia2/production-database
+                            docker build -t mysql . 
+EOF
+                            '''
+                        }
+                    }
+                }          
+            }
+            stage('Build Test Database Image'){
+                steps{
+                    script{
+                        if (env.rollback == 'false'){
+                            sh '''
+                            ssh ubuntu@ip-172-30-0-80<<EOF
+                            cd ~/sfia2/test-database
                             docker build -t mysql . 
 EOF
                             '''
@@ -90,8 +101,41 @@ EOF
                     docker-compose up -d
 EOF
                     '''
-                    }
-                }          
+                }
             }
-
-        } 
+            stage('Front end Testing'){
+                steps{
+                    sh '''
+                    ssh ubuntu@ip-172-30-0-98 <<EOF
+                    cd ~/sfia2
+                    export TEST_DATABASE_URI="$TEST_DATABASE_URI"
+                    export DATABASE_URI="$DATABASE_URI"
+                    export SECRET_KEY="$SECRET_KEY"
+                    export MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
+                    docker-compose up -d
+                    sleep 20
+                    cd frontend/tests
+                    docker-compose exec -T frontend pytest --cov application > frontendpytest.txt                                      
+EOF
+                    '''
+                }
+            }
+            stage('back end Testing'){
+                steps{
+                    sh '''
+                    ssh ubuntu@ip-172-30-0-149 <<EOF
+                    cd ~/sfia2
+                    export TEST_DATABASE_URI="$TEST_DATABASE_URI"
+                    export DATABASE_URI="$DATABASE_URI"
+                    export SECRET_KEY="$SECRET_KEY"
+                    export MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
+                    docker-compose up -d
+                    sleep 20
+                    cd backend/tests
+                   docker-compose exec -T backend "pytest --cov application > backendpytest.txt"                                       
+EOF
+                    '''
+                }
+            }
+        }
+}     
