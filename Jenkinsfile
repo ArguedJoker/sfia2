@@ -1,49 +1,47 @@
+ 
 pipeline{
         agent any
         environment {
             app_version = 'v1'
             rollback = 'false'
         }
-
         stages{
-
             stage('Install Docker and Docker-Compose'){
                 steps{
-                    script{
-                        sh '''
-                        ssh -tt rpscdevelopments@35.197.208.214 <<'EOT'
-                        curl https://get.docker.com | sudo bash
-                        sudo usermod -aG docker $(whoami)
-                        sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-                        sudo chmod +x /usr/local/bin/docker-compose
-EOT                                 
-                        '''
-                    }                        
-                }
-            }
-            
-
-            stage('Clone repository and cd into directory'){
-                steps{
-                    script{
-                            sh '''
-                            ssh rpscdevelopments@35.197.208.214 <<EOF
-                            git clone https://github.com/ArguedJoker/sfia2.git
-                            cd sfia2
+                    sh '''
+                    ssh ubuntu@ip-172-30-0-80<<EOF
+                    curl https://get.docker.com | sudo bash 
+                    sudo usermod -aG docker $(whoami)
+                    sudo apt update
+                    sudo apt install -y curl jq
+                    version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')
+                    sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                    sudo chmod +x /usr/local/bin/docker-compose
+                    sudo chmod 666 /var/run/docker.sock
 EOF
-                            '''
-                        }
-                    }
-                }          
-
+                    '''
+  
+            }
+        }
+            stage('clone repo and change directory'){
+                steps{
+                    sh '''
+                    ssh ubuntu@ip-172-30-0-80 <<EOF
+                    git clone https://github.com/ArguedJoker/sfia2.git
+                    cd sfia2
+EOF
+                    '''
+            }
+        }
+      
             stage('Build frontend Image'){
                 steps{
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@35.197.208.214 <<EOF
-                            cd sfia2/frontend
-                            docker build -t frontend .
+                            ssh ubuntu@ip-172-30-0-80 <<EOF
+                            cd ~/sfia2/frontend
+                            docker build -t frontend . 
 EOF
                             '''
                         }
@@ -56,9 +54,9 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@35.197.208.214 <<EOF
-                            cd sfia2/backend
-                            docker build -t backend .
+                            ssh ubuntu@ip-172-30-0-80<<EOF
+                            cd ~/sfia2/backend
+                            docker build -t backend . 
 EOF
                             '''
                         }
@@ -66,33 +64,34 @@ EOF
                 }          
             }
 
-            stage('Build production database Image'){
+            stage('Build database Image'){
                 steps{
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh rpscdevelopments@35.197.208.214 <<EOF
-                            cd sfia/database
-                            docker build -t database .
+                            ssh ubuntu@ip-172-30-0-80<<EOF
+                            cd ~/sfia2/database
+                            docker build -t mysql . 
 EOF
                             '''
                         }
                     }
                 }          
             }
-
             stage('Deploy App'){
                 steps{
                     sh '''
-                    ssh rpscdevelopments@35.197.208.214 <<EOF
-                    cd sfia2
-                    sudo -E DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} MYSQL_ROOT_PASSWORD={DB_PASSWORD}
-                    docker-compose pull && docker-compose up -d
-                    docker-compose logs
+                    ssh ubuntu@ip-172-30-0-80 <<EOF
+                    cd ~/sfia2
+                    export TEST_DATABASE_URI=$TEST_DATABASE_URI
+                    export DATABASE_URI=$DATABASE_URI
+                    export SECRET_KEY=$SECRET_KEY
+                    export MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+                    docker-compose up -d
 EOF
                     '''
-                }
+                    }
+                }          
             }
-        }
-    }     
-     
+
+        } 
