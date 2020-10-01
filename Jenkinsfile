@@ -67,7 +67,21 @@ EOF
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80<<EOF
-                            cd ~/sfia2/database
+                            cd ~/sfia2/production-database
+                            docker build -t mysql . 
+EOF
+                            '''
+                        }
+                    }
+                }          
+            }
+            stage('Build Test Database Image'){
+                steps{
+                    script{
+                        if (env.rollback == 'false'){
+                            sh '''
+                            ssh ubuntu@ip-172-30-0-80<<EOF
+                            cd ~/sfia2/test-database
                             docker build -t mysql . 
 EOF
                             '''
