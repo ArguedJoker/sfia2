@@ -42,7 +42,7 @@ EOF
                         if (env.rollback == 'false'){
                         sh '''
                         ssh ubuntu@ip-172-30-0-80 <<EOF
-                        cd sfia2/frontend
+                        cd ~/sfia2/frontend
                         docker build -t frontend .
 EOF
                         '''
@@ -57,7 +57,7 @@ EOF
                         if (env.rollback == 'false'){
                         sh '''
                         ssh ubuntu@ip-172-30-0-80 <<EOF
-                        cd sfia2/backend
+                        cd ~/sfia2/backend
                         docker build -t backend .
 EOF
                         '''
@@ -72,7 +72,7 @@ EOF
                         if (env.rollback == 'false'){
                         sh '''
                         ssh ubuntu@ip-172-30-0-80 <<EOF
-                        cd sfia/database
+                        cd ~/sfia2/database
                         docker build -t database .
 EOF
                         '''

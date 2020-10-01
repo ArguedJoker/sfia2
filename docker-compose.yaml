@@ -5,7 +5,6 @@ services:
     build: ./frontend
     depends_on: 
       - backend
-
   backend: 
     image: backend
     build: ./backend
@@ -15,13 +14,11 @@ services:
       SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - database
-
   database:
     image: database
     build: ./database
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-
   nginx:
     image: nginx:latest
     ports:
