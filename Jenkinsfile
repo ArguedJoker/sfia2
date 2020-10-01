@@ -65,7 +65,11 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
+<<<<<<< HEAD
                             ssh ubuntu@ip-172-30-0-80<<EOF
+=======
+                            ssh ubuntu@ip-172-30-0-98<<EOF
+>>>>>>> 49ec3c134a52fd3fff35e16c71e49a56526ea49e
                             cd ~/sfia2/production-database
                             docker build -t mysql . 
 EOF
@@ -79,7 +83,11 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
+<<<<<<< HEAD
                             ssh ubuntu@ip-172-30-0-80<<EOF
+=======
+                            ssh ubuntu@ip-172-30-0-149<<EOF
+>>>>>>> 49ec3c134a52fd3fff35e16c71e49a56526ea49e
                             cd ~/sfia2/test-database
                             docker build -t mysql . 
 EOF
@@ -105,7 +113,11 @@ EOF
             stage('Front end Testing'){
                 steps{
                     sh '''
+<<<<<<< HEAD
                     ssh ubuntu@ip-172-30-0-98 <<EOF
+=======
+                    ssh ubuntu@ip-172-30-0-80 <<EOF
+>>>>>>> 49ec3c134a52fd3fff35e16c71e49a56526ea49e
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
@@ -122,7 +134,11 @@ EOF
             stage('back end Testing'){
                 steps{
                     sh '''
+<<<<<<< HEAD
                     ssh ubuntu@ip-172-30-0-149 <<EOF
+=======
+                    ssh ubuntu@ip-172-30-0-80 <<EOF
+>>>>>>> 49ec3c134a52fd3fff35e16c71e49a56526ea49e
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
@@ -137,4 +153,8 @@ EOF
                 }
             }
         }
+<<<<<<< HEAD
 }
+=======
+}     
+>>>>>>> 49ec3c134a52fd3fff35e16c71e49a56526ea49e
