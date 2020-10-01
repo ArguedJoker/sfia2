@@ -9,7 +9,7 @@ pipeline{
         stage('Install Docker and Docker-Compose'){
             steps{
                 sh '''
-                ssh ubuntu@ip-172-30-0-80 <<<EOF
+                ssh ubuntu@ip-172-30-0-80 <<EOF
                 curl https://get.docker.com | sudo bash
                 sudo usermod -aG docker $(whoami)
                 sudo apt update
@@ -19,7 +19,7 @@ pipeline{
                 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
                 sudo chmod +x /usr/local/bin/docker-compose
                 sudo chmod 666 /var/run/docker.sock
->> EOF                                 
+EOF                                 
                 '''                                                
             }
         }
@@ -31,7 +31,7 @@ pipeline{
                 ssh ubuntu@ip-172-30-0-80 <<EOF
                 git clone https://github.com/ArguedJoker/sfia2.git
                 cd sfia2
->> EOF
+EOF
                 '''
             }
         }          
@@ -44,7 +44,7 @@ pipeline{
                     ssh ubuntu@ip-172-30-0-80 <<EOF
                     cd sfia2/frontend
                     docker build -t frontend .
->> EOF
+EOF
                     '''
                     }
                 }
@@ -59,7 +59,7 @@ pipeline{
                     ssh ubuntu@ip-172-30-0-80 <<EOF
                     cd sfia2/backend
                     docker build -t backend .
->> EOF
+EOF
                     '''
                     }
                 }
@@ -74,7 +74,7 @@ pipeline{
                     ssh ubuntu@ip-172-30-0-80 <<EOF
                     cd sfia/database
                     docker build -t database .
->> EOF
+EOF
                     '''
                     }
                 }
@@ -92,7 +92,7 @@ pipeline{
                 export MYSQL_ROOT_PASSWORD={DB_PASSWORD} 
                 docker-compose pull && docker-compose up -d
                 docker-compose logs
->> EOF
+EOF
                 '''
             }
         }
