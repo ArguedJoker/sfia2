@@ -93,7 +93,7 @@ EOF
                 steps{
                     sh '''
                     ssh ubuntu@ip-172-30-0-80 <<EOF
-                    cd cne-sfia2-brief
+                    cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
                     export SECRET_KEY="$SECRET_KEY"
@@ -110,7 +110,7 @@ EOF
                 steps{
                     sh '''
                     ssh ubuntu@ip-172-30-0-80 <<EOF
-                    cd cne-sfia2-brief
+                    cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
                     export SECRET_KEY="$SECRET_KEY"
