@@ -65,7 +65,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh ubuntu@ip-172-30-0-98<<EOF
+                            ssh ubuntu@ip-172-30-0-80<<EOF
                             cd ~/sfia2/production-database
                             docker build -t mysql . 
 EOF
@@ -79,7 +79,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh ubuntu@ip-172-30-0-149<<EOF
+                            ssh ubuntu@ip-172-30-0-80<<EOF
                             cd ~/sfia2/test-database
                             docker build -t mysql . 
 EOF
@@ -106,7 +106,6 @@ EOF
                 steps{
                     sh '''
                     ssh ubuntu@ip-172-30-0-98 <<EOF
-                    ssh ubuntu@ip-172-30-0-80 <<EOF
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
@@ -123,7 +122,7 @@ EOF
             stage('back end Testing'){
                 steps{
                     sh '''
-                    ssh ubuntu@ip-172-30-0-80 <<EOF
+                    ssh ubuntu@ip-172-30-0-149 <<EOF
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
