@@ -28,7 +28,7 @@ EOF
                     sh '''
                     ssh ubuntu@ip-172-30-0-80 <<EOF
                     git clone https://github.com/ArguedJoker/sfia2.git
-                    cd cne-sfia2-brief
+                    cd sfia2
 EOF
                     '''
             }
@@ -40,7 +40,7 @@ EOF
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80 <<EOF
-                            cd cne-sfia2-brief/frontend
+                            cd sfia2/frontend
                             docker build -t frontend . 
 EOF
                             '''
@@ -55,7 +55,7 @@ EOF
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80<<EOF
-                            cd cne-sfia2-brief/backend
+                            cd sfia2/backend
                             docker build -t backend . 
 EOF
                             '''
@@ -70,7 +70,7 @@ EOF
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80<<EOF
-                            cd cne-sfia2-brief/database
+                            cd sfia2/database
                             docker build -t mysql . 
 EOF
                             '''
@@ -82,7 +82,7 @@ EOF
                 steps{
                     sh '''
                     ssh ubuntu@ip-172-30-0-80 <<EOF
-                    cd cne-sfia2-brief
+                    cd sfia2
                     export TEST_DATABASE_URI=$TEST_DATABASE_URI
                     export DATABASE_URI=$DATABASE_URI
                     export SECRET_KEY=$SECRET_KEY
