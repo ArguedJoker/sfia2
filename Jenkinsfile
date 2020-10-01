@@ -1,4 +1,3 @@
- 
 pipeline{
         agent any
         environment {
@@ -138,4 +137,4 @@ EOF
                 }
             }
         }
-}     
+}
