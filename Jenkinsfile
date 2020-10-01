@@ -66,6 +66,7 @@ EOF
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80<<EOF
+                            mkdir ~/sfia2/production-database
                             cd ~/sfia2/production-database
                             docker build -t mysql . 
 EOF
@@ -80,6 +81,7 @@ EOF
                         if (env.rollback == 'false'){
                             sh '''
                             ssh ubuntu@ip-172-30-0-80<<EOF
+                            mkdir ~/sfia2/test-database
                             cd ~/sfia2/test-database
                             docker build -t mysql . 
 EOF
