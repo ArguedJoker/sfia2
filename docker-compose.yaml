@@ -3,31 +3,33 @@ services:
   frontend:
     image: frontend
     build: ./frontend
-    depends_on: 
+    depends_on:
       - backend
-  backend: 
+
+  backend:
     image: backend
     build: ./backend
     environment:
-      TEST_DATABASE_URI: $(TEST_DATABASE_URI)
+      TEST_DATABASE_URI: ${TEST_DATABASE_URI}
       DATABASE_URI: ${DATABASE_URI}
       SECRET_KEY: ${SECRET_KEY}
     depends_on:
-      - database
-  database:
-    image: database
+      - mysql
+
+  mysql:
+    image: mysql
     build: ./database
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+ 
   nginx:
-    image: nginx:latest
+    image: nginx
     ports:
       - target: 80
         published: 80
     volumes:
-      - type: bind
-        source: ./nginx/nginx.conf
-        target: /etc/nginx/nginx.conf
-    depends_on: 
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf
+    depends_on:
       - frontend
-  
