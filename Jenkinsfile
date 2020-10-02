@@ -117,7 +117,7 @@ EOF
                     export MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
                     docker-compose up -d
                     sleep 20
-                    cd frontend/tests
+                    cd ~/frontend/tests
                     docker-compose exec -T frontend pytest --cov application > frontendpytest.txt                                      
 EOF
                     '''
@@ -134,8 +134,8 @@ EOF
                     export MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
                     docker-compose up -d
                     sleep 20
-                    cd backend/tests
-                   docker-compose exec -T backend "pytest --cov application > backendpytest.txt"                                       
+                    cd ~/backend/tests
+                    docker-compose exec -T backend "pytest --cov application > backendpytest.txt"                                       
 EOF
                     '''
                 }
