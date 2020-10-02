@@ -106,10 +106,10 @@ EOF
                     '''
                 }
             }
-            stage('back end Testing'){
+            stage('back end Testing'){exit
                 steps{
                     sh '''
-                    ssh ubuntu@ip-172-30-0-149 <<EOF
+                    ssh ubuntu@ip-172-30-0-98 <<EOF
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
