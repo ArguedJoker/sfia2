@@ -106,7 +106,7 @@ EOF
                     '''
                 }
             }
-            stage('back end Testing'){exit
+            stage('Back end Testing'){
                 steps{
                     sh '''
                     ssh ubuntu@ip-172-30-0-98 <<EOF
