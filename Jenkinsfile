@@ -8,7 +8,7 @@ pipeline{
             stage('Install Docker and Docker-Compose'){
                 steps{
                     sh '''
-                    ssh ubuntu@ip-172-30-0-80<<EOF
+                    ssh -t ubuntu@ip-172-30-0-80<<EOF
                     curl https://get.docker.com | sudo bash 
                     sudo usermod -aG docker $(whoami)
                     sudo apt update
@@ -24,7 +24,7 @@ EOF
             stage('clone repository and cd into directory'){
                 steps{
                     sh '''
-                    ssh ubuntu@ip-172-30-0-80 <<EOF
+                    ssh -t ubuntu@ip-172-30-0-80 <<EOF
                     git clone https://github.com/ArguedJoker/sfia2.git
                     cd sfia2
 EOF
@@ -36,7 +36,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh ubuntu@ip-172-30-0-80 <<EOF
+                            ssh -t ubuntu@ip-172-30-0-80 <<EOF
                             cd ~/sfia2/frontend
                             docker build -t frontend . 
 EOF
