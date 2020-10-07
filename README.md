@@ -148,20 +148,6 @@ Before any work on the project is under way, it is important to assess the vario
 
 [link to google sheets for Risk Assessment]
 
-<details>
-
-| Threat                    | Issue  Type | Description                                         | Likelihood | Impact | Responsibility | Current Mitigation      | Proposed Mitigation                               | Response                                      | Tolerance |
-|---------------------------|-------------|-----------------------------------------------------|------------|--------|----------------|-------------------------|---------------------------------------------------|-----------------------------------------------|-----------|
-| SQL Database Inaccessible | Technical   | MySQL database hosted by the Google Cloud Platform (GCP) could become inaccessible rendering the application unusable |    Low     |  Low   |     GCP        | N/A    |    Set back up for database by either a dedicated VM which allows for cloning of the DB into another| Try restarting database manually. Failure would then lead to contact GCP | Tolerate             |                                                 
-| VM hosting Inaccessible   | Technical   | The application database relies on the Virtual Machine (VM) which is hosted by the GCP    |   Low         |  Low      |  GCP              |     N/A                    | Set back up; dedicated VM; cloning of database  |  manual restart; failure leads to contacting GCP   |  Tolerate | 
-| Invalid data input        | User        | Human error could lead to errors made during input of data |  Medium    | High   | Rohan Chauhan  | N/A                     | N/A                                               | N/A                                           |  Treat    |
-| HTTP vs HTTPS             |  Technical  | connections made use Hypertext Transfer Protocol (HTTP) are not encrypted. Using a more secure form of HTTP called HTTPS would prevent transferred data to be visible to any potential exploiters   |  High      | Low    | Rohan Chauhan  | N/A                     | Employ HTTPS connections                          | If any inconsistencies have been discovered in the app data, backups must be used to restore consistency  |   Treat   |
-| COVID - 19 / illness      |Non-technical| The virus is still prevalent, despite lockdown measures. It would be very possible to contract the virus or some other disease that would render me unable to complete the project    |   Low      | High   | Rohan Chauhan  | Following government advice such as the use of face covering and social distancing when in contact with people   | Following government directives                   | N/A                                           | Tolerate  |
-
-
-
-</details>
-
 ##### Definition 
 Key
 
