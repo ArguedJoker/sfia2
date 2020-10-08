@@ -13,15 +13,12 @@ Automation Project
 ## Contents
 
 * [Acknowledgements](#Acknowledgements)
-* [Resources](#Resources)
 * [Licensing & versioning](#licensing-&-Versioning)
 * [Brief](#Brief)
     * [Project Scope (Additional Requirements)](#Project-Scope-(Additional-Requirements))
 * [Technologies](#Technologies)
 * [Architecture](#Architecture)  
 * [Project Tracking](#Project-Tracking)
-* [User Story](#User-Stories)
-    * [What makes a User Story?](#so-what-makes-a-user-story)
 * [My Approach](#My-Approach)
     * [Project Introduction](#Project-Introduction)
     * [MoSCoW Analysis](#MOSCOW-Analysis)
@@ -47,10 +44,6 @@ Acknowledgements go to:
   
   All of whom without I would not have amassed the knowledge, nor the skill-set to have made this project come to life.
 
-## Resources
-
-Donald Pump image from bodybuilding_humour
-
 ## Licensing & Versioning
 
 Version 1.0.1a
@@ -59,38 +52,54 @@ Version 1.0.1a
 
 The brief provided for the project sets the following out as the overall objective:
 
+* to be deployed to a Virtual Machine for testing purposes
+* be deployed in a managed Kubernetes Cluster for production purposes
+* make use of a managed Database solution
+
 [Back to Contents](#Contents)
 ## Project Scope (Additional Requirements)
 
-The minimum requirements for the project were as follows:
+The project involved the following concepts:
+
+* Continuous Integeration
+* Containerisation
+* Configuration Management
+* Cloud Solutions
+* Infrastructure Management
+* Orchestration
+
+A Jira board was to be used to help perform task management and project planning. This would serve to provide a record of any issues that were faced creating the project. 
+
+With the idea of a minimum viable project (MVP):
+
+* the application had to be deployed using containerisation and orchestration tools such as docker and kubernetes and Jenkins to provide the CI pipeline that would enable testing on the application. 
+* The project had to make sue of two managed Database Servers - one for testing and the other for production. 
+* Ansible would be used to provision the environment that the CI server would need to run and make use of NGINX of a reverse proxy so that the application was accessible to the user. 
+* If a change is made to the code base, webhooks should be used so that Jenkins would recreate and redeploy the changed applications.
+
 
 [Back to Contents](#Contents)
 
 ## Technologies
 
-The following project constraints are as follows in the table:
-
-<details>
-
-| Technology | Use     |
-| ---------- |---------|
-| Jira       | Kanban board, Task Management / Tracking|
-| GCP Managed SQL Server| Database|
-| Java | Programming Language, Back-end |
-| HTML | Markup Language, Front-End|
-| CSS | Styling Sheet Language, Front-end|
-| JavaScript | Scripting Language, Front-end|
-| JUnit & Mockito | Unit Testing |
-| Selenium | Integration Testing |
-| Git | Version Control |
-| CircleCI | CI Server |
-| GCP Virtual Machine | Cloud Server |
-
-</details>
+* Kanban Board: Jira
+* Version Control: Git
+* CI Server: Jenkins
+* Configuration Management: Ansible
+* Cloud Server: AWS EC2
+* Database Server: AWS RDS
+* Containerisation: Docker
+* Reverse Proxy: NGINX
+* Orchestration Tool: Kubernetes
+* Infrastructure Management: Terraform
 
 [Back to Contents](#Contents)
 
 ## Architecture
+
+![mvp-diagram](https://i.imgur.com/i5qfOas.png)
+
+The picture above demonstrates how the MVP should be working at a high level. Terraform should spin up some virtual machines for Jenkins, the Testing Database and Production Database. Ansible a powerful tool for automation would then install and configure Jenkins with a user in the virtual machine through ansible-playbooks. When the codebase is edited in the development branch, Jenkins would detect this through Webhooks and would push this to the testing environment where the python application would then have to pass unit tests made by pytests. Once passed, the automation would continue and merge the Development branch to master which would be detected by Jenkins. The CI pipeline would then push the build from master to the production environment. The user would be able to see the frontend of the application on port 80 because of reverse proxy that was enabled by NGINX.
 
 [Back to Contents](#Contents)
 
@@ -105,21 +114,9 @@ My first sprint was very successful as I was able to complete all of my tasks su
 
 [Back to Contents](#Contents)
 
-## User Stories
-
-
-
- ### So what makes a User Story?
-
- 
-
-<p align="center">
-    <img width="300" height="350" src="https://qa-courseware-images.s3.eu-west-2.amazonaws.com/agile/product-backlog-items/000.png" alt="mind map showing the one to many relationship between Epics, stories and tasks are related"/>
-</p>
-
 ## My Approach
 
-In order to achieve this I decided on producing an application on a subject rather topical in the current economic climate and rather close to my heart in the following introduction:
+
 
 [Back to Contents](#Contents)
 
@@ -141,10 +138,14 @@ MoSCoW itself is an acronym where the capital letters are all derived from the f
 * Could have - priorities that are desirable but not necessary. Usually this would tend to be UI/UX improvements and are typically included if time and resources permit.
 * Won't have - time to carry out these priorities for the current deadline and have been agreed upon and will usually be re-evaluated.
 
-|Must Have | Should Have | Could Have | Won't Have |
-|----------|-------------|------------|------------|
-| CRUD functionality | Log-in  functionality | aesthetic Front-End Design | Using quote generator to create fun inspirational quotes each time user logs in      | 
-|          |             | Inspirational Quote Generator | |
+| Must Have                                             | Should Have                                            | Could Have | Won't Have |
+|-------------------------------------------------------|--------------------------------------------------------|------------|------------|
+| Containerisation tools to deploy application          | Pytest must be put in document for reading             | Terraform and Ansible to configure test VM           |            | 
+| Orchestration tools to deploy application             |                                                        | Terraform to configure the Kubernetes Cluster           |            |
+| Two managed Database Servers (testing and production) |                                                        |            |            |
+| Webhooks so that Jenkins recreates and redeploys      |                                                        |            |            |
+| Ansible Playbook to provision the CI server           |                                                        |            |            |
+| NGINX to make sue of reverse proxy                    |                                                        |            |            |
 
 [Back to Contents](#Contents)
 
@@ -168,10 +169,7 @@ Risk Tolerance would dictate whether action would need to be taken or if the cur
 
 ## Testing
 
-Once the frontend and the backend are completed and linked together, deep testing would be required to ensure the functionality of both aspects of the application.
-Testing will be carried out using Junit and Selenium in two replicable ways as shown below.
-
-## pyesting
+### pyesting
 
 
 [Back to Contents](#Contents)
