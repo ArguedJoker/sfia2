@@ -18,17 +18,17 @@ Automation Project
 * [Brief](#Brief)
     * [Project Scope (Additional Requirements)](#Project-Scope-(Additional-Requirements))
 * [Technologies](#Technologies)
-* [My Approach](#My-Approach)
-    * [Project Introduction](#Project-Introduction)
 * [Architecture](#Architecture)  
 * [Project Tracking](#Project-Tracking)
-* [MoSCoW Analysis](#MOSCOW-Analysis)
-* [Risk Assessment](#Risk-Assessment)
-* [Security](#Security)
-* [Testing](#Testing)
-    * [pytest](#Pytest)
 * [User Story](#User-Stories)
     * [What makes a User Story?](#so-what-makes-a-user-story)
+* [My Approach](#My-Approach)
+    * [Project Introduction](#Project-Introduction)
+    * [MoSCoW Analysis](#MOSCOW-Analysis)
+    * [Risk Assessment](#Risk-Assessment)
+    * [Security](#Security)
+    * [Testing](#Testing)
+        * [pytest](#Pytest)
 * [Known Issues](#Known-Issues)
 * [Future Improvements & possible Features](#Future-Improvements-&-possible-features)
     * [Long Term Improvements](#Long-Term-Improvements)
@@ -90,26 +90,7 @@ The following project constraints are as follows in the table:
 
 [Back to Contents](#Contents)
 
-## My Approach
-
-In order to achieve this I decided on producing an application on a subject rather topical in the current economic climate and rather close to my heart in the following introduction:
-
-[Back to Contents](#Contents)
-
-### Project Introduction
-<details>
-
-</details>
-
-[Back to Contents](#Contents)
-
 ## Architecture
-
-### Database Structure
-
-[Back to Contents](#Contents)
-
-### CI Pipeline
 
 [Back to Contents](#Contents)
 
@@ -121,6 +102,31 @@ In order to achieve this I decided on producing an application on a subject rath
 
 Jira is a useful tool that was selected as it supports roadmapping requirements. It empowers the user to sketch out the big picture, communicate plans and enables to connect the overarching bigger roadmap goals between each individual and team to deadlines and daily tasks. It is great for Agile Methodologies and can be integrated with other applications such as teams for easier monitoring of progress which shows just how customisable it can be. This flexibility is probably its largest positive feature as different approaches can be accommodated and companies can still work in a positive and efficient manner.
 My first sprint was very successful as I was able to complete all of my tasks such as completing the risk assessment and I was able spend more time on learning Java.  The second sprint lasted 2 weeks in which I have done a lot of coding of the application and have managed to complete the crud logic functionality on the backend. I am still currently in the process of making CRUD functionality available on the frontend, though I have been successful in create, read and delete functionality.
+
+[Back to Contents](#Contents)
+
+## User Stories
+
+
+
+ ### So what makes a User Story?
+
+ 
+
+<p align="center">
+    <img width="300" height="350" src="https://qa-courseware-images.s3.eu-west-2.amazonaws.com/agile/product-backlog-items/000.png" alt="mind map showing the one to many relationship between Epics, stories and tasks are related"/>
+</p>
+
+## My Approach
+
+In order to achieve this I decided on producing an application on a subject rather topical in the current economic climate and rather close to my heart in the following introduction:
+
+[Back to Contents](#Contents)
+
+### Project Introduction
+<details>
+
+</details>
 
 [Back to Contents](#Contents)
 
@@ -170,17 +176,7 @@ Testing will be carried out using Junit and Selenium in two replicable ways as s
 
 [Back to Contents](#Contents)
 
-## User Stories
 
-
-
- ### So what makes a User Story?
-
- 
-
-<p align="center">
-    <img width="300" height="350" src="https://qa-courseware-images.s3.eu-west-2.amazonaws.com/agile/product-backlog-items/000.png" alt="mind map showing the one to many relationship between Epics, stories and tasks are related"/>
-</p>
 
 ## Known Issues
 
