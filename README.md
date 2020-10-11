@@ -18,18 +18,16 @@ Automation Project
     * [Project Scope (Additional Requirements)](#Project-Scope-(Additional-Requirements))
 * [Technologies](#Technologies)
 * [Architecture](#Architecture)  
-* [Project Tracking](#Project-Tracking)
 * [My Approach](#My-Approach)
     * [Project Introduction](#Project-Introduction)
+    * [Project Tracking](#Project-Tracking)
     * [MoSCoW Analysis](#MOSCOW-Analysis)
     * [Risk Assessment](#Risk-Assessment)
     * [Security](#Security)
     * [Testing](#Testing)
         * [pytest](#Pytest)
-* [Known Issues](#Known-Issues)
+* [Known Issues Faced](#Known-Issues-Faced)
 * [Future Improvements & possible Features](#Future-Improvements-&-possible-features)
-    * [Long Term Improvements](#Long-Term-Improvements)
-        * [Security](#Security)* 
 * [Author](#Author)
 
 
@@ -68,8 +66,6 @@ The project involved the following concepts:
 * Infrastructure Management
 * Orchestration
 
-A Jira board was to be used to help perform task management and project planning. This would serve to provide a record of any issues that were faced creating the project. 
-
 With the idea of a minimum viable project (MVP):
 
 * the application had to be deployed using containerisation and orchestration tools such as docker and kubernetes and Jenkins to provide the CI pipeline that would enable testing on the application. 
@@ -95,7 +91,7 @@ With the idea of a minimum viable project (MVP):
 
 ## Jira
 
-Jira is a useful tool that was selected as it supports roadmapping requirements. It empowers the user to sketch out the big picture, communicate plans and enables to connect the overarching bigger roadmap goals between each individual and team to deadlines and daily tasks. It is great for Agile Methodologies and can be integrated with other applications such as teams for easier monitoring of progress which shows just how customisable it can be. This flexibility is probably its largest positive feature as different approaches can be accommodated and companies can still work in a positive and efficient manner.
+Jira is a useful tool that was selected as it supports roadmapping requirements. It empowers the user to sketch out the big picture, communicate plans and enables to connect the overarching bigger roadmap goals between each individual and team to deadlines and daily tasks. It is great for Agile Methodologies and can be integrated with other applications such as teams for easier monitoring of progress which shows just how customisable it can be. This flexibility is probably its largest positive feature as different approaches can be accommodated and companies can still work in a positive and efficient manner. A Jira board was to be used to help perform task management and project planning. This would serve to provide a record of any issues that were faced creating the project.
 
 For more information: https://www.atlassian.com/software/jira/features
 
@@ -119,13 +115,13 @@ For more information: https://www.ansible.com/
 
 ## AWS EC2
 
-Amazon Web Service Elastic Compute 2 is a web service that is designed to make web-scale cloud computing much, much easier for developers.
+Amazon Web Service Elastic Compute 2 is a web service that is designed to make web-scale cloud computing much, much easier for developers. The project utilises this service to create EC2 instances.
 
 For more information: https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc
 
 ## AWS RDS
 
-Amazon Relational Database Service is a technology that allows for cost-efficient database in the cloud that is easy to set up.
+Amazon Relational Database Service is a technology that allows for cost-efficient database in the cloud that is easy to set up. The project utilises two AWS RDS instances.
 
 For more information: https://aws.amazon.com/rds/
 
@@ -163,31 +159,35 @@ The picture above demonstrates how the MVP should be working at a high level. Te
 
 [Back to Contents](#Contents)
 
+## My Approach
+
+### Project Introduction
+
+To start off I had to plan how I wanted to approach the project requirements and this meant a lot of background reading into the various technologies. Once I had established a basic fundamental knowledge of the technologies, I was then able to have a clear picture of how they related to each other and thus how I should start to plan my project. Over the course of my sprints, the documentation became more detailed as I became more proficient with the technologies and increased my knowledge base.
+
+(Any issues I faced will be mentioned in the Known Issues Faced section)
+
+<p align="center">
+    <img width="600" height="400" src="">
+</p>
+
+[Back to Contents](#Contents)
+
 ## Project Tracking
 
 <p align="center">
     <img width="600" height="400" src="">
 </p>
 
+* My first sprint was very successful as I was able to complete all of my tasks such as completing the risk assessment and I was able spend more time on learning Java.  
 
-My first sprint was very successful as I was able to complete all of my tasks such as completing the risk assessment and I was able spend more time on learning Java.  The second sprint lasted 2 weeks in which I have done a lot of coding of the application and have managed to complete the crud logic functionality on the backend. I am still currently in the process of making CRUD functionality available on the frontend, though I have been successful in create, read and delete functionality.
+* The second sprint was equally successful where I was able to write a lot of the architecture code and managed to set up docker, docker-compose and have Jenkins working with webhooks. In this time I was mainly using Google Cloud Platform to practice this.
 
-[Back to Contents](#Contents)
-
-## My Approach
-
-
+* The third sprint was focused on the transferring all the code to AWS and to utilise Ansible, Terraform and Kubernetes. 
 
 [Back to Contents](#Contents)
 
-### Project Introduction
-<details>
-
-</details>
-
-[Back to Contents](#Contents)
-
-## MOSCOW Analysis
+### MOSCOW Analysis
 
 The MoSCow Analysis is a technique that is very commonly used in management, particularly in project management and software development.  In short, this principle effectively provides perspective and focus on managing expectations within a project. It is a useful tool when communicating with stakeholders about what elements of the project should have priority and what parts should be re-evaluated. It is usually used in conjunction with timeboxing  and is commonly used in agile software development approaches like Scrum.
 
@@ -213,9 +213,12 @@ MoSCoW itself is an acronym where the capital letters are all derived from the f
 
 Before any work on the project is under way, it is important to assess the various risks that can affect successful completion. In the analysis I have included various risks that could affect each stage of the project ranging from SQL injections through to the likelihood of the risk and the impact.
 
-[link to google sheets for Risk Assessment]
+https://docs.google.com/spreadsheets/d/1t2-prSWoazSUeYOM_edqfVvreSCfYGyaql9sTPWwUKw/edit#gid=0
+
+Note that the excel sheet has been added as additional information.
 
 ##### Definition 
+
 Key
 
 |            | Low                    | Medium                                                                            | High                                                                                                    |
@@ -229,23 +232,26 @@ Risk Tolerance would dictate whether action would need to be taken or if the cur
 
 ## Testing
 
-### pyesting
+### Pyesting
 
+Unit Testing is very important for any application creation. It is used to test small components (or units) within the application in controlled environments. In the project Pytest is used to execute the unit testing and the resulting information (frontend and backend) is cat into a document in the respective documents.
+
+[testing result pictures here]
 
 [Back to Contents](#Contents)
 
 
 
-## Known Issues
+## Known Issues Faced
 
+* Whilst leasrning with GCP, I did come across a lot of host verification errors or permission errors. This is because of the security feature in GCP VMs which will forget the public key after a certain amount of time. I would have to put the public key back into the authorized key in the appropriate VM. This was particularly infuriating when testing for Jenkins and was a large part of the reason why I decided on making the switch to AWS as it is more mature, with better documentation.
 
 [Back to Contents](#Contents)
 
 ## Future Improvements & possible features
 
-
-## Long Term Improvements
-
+* Using Terraform to configure the Kubernetes Cluster for production
+* Using Terrafrom and Ansible to configure the Test VM
 
 [Back to Contents](#Contents)
 
