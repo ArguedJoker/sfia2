@@ -93,6 +93,66 @@ With the idea of a minimum viable project (MVP):
 * Orchestration Tool: Kubernetes
 * Infrastructure Management: Terraform
 
+## Jira
+
+Jira is a useful tool that was selected as it supports roadmapping requirements. It empowers the user to sketch out the big picture, communicate plans and enables to connect the overarching bigger roadmap goals between each individual and team to deadlines and daily tasks. It is great for Agile Methodologies and can be integrated with other applications such as teams for easier monitoring of progress which shows just how customisable it can be. This flexibility is probably its largest positive feature as different approaches can be accommodated and companies can still work in a positive and efficient manner.
+
+For more information: https://www.atlassian.com/software/jira/features
+
+## Git 
+
+Git is a distributed Version Control System where developers can put their code into repositories. Github holds these repositories. 
+
+For more information: https://git-scm.com/
+
+## Jenkins
+
+Is a free open source automation server. It helps to automate the all the monotonous parts of software development that pertain to building, testing and deploying. It is crucial for the continous integration and continuous delivery for this project. One of the best features is the use of webhooks to trigger builds. For example, a webhook can be triggered upon pushed commits to github.
+
+For more information: https://en.wikipedia.org/wiki/Jenkins_(software)
+
+## Ansible
+
+Another open-source software that is useful for provisioning, configuration management, and application-deployment tool. It can run on and configure many unix like systems and windows. It utilises YAML language which is used to write ansible playbooks. It is extremely powerful because it can spin up many hundereds of nodes at any time because Ansible itself is agentless. This means that its operations only push out only what nodes need to see. It uses SSH to push changes from a single source to multiple remote resources for linus and unix machines.
+
+For more information: https://www.ansible.com/
+
+## AWS EC2
+
+Amazon Web Service Elastic Compute 2 is a web service that is designed to make web-scale cloud computing much, much easier for developers.
+
+For more information: https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc
+
+## AWS RDS
+
+Amazon Relational Database Service is a technology that allows for cost-efficient database in the cloud that is easy to set up.
+
+For more information: https://aws.amazon.com/rds/
+
+## Docker
+
+An open-source containerisation tool, docker is a useful solution for differing system enviorments, providing the ability to keep environments consistent. In the project Docker is used to build and create images which can be sent to dockerhub.
+
+For more information: https://www.docker.com/
+
+## NGINX
+
+This is a web server that is used as a reverse proxy, load balancer and many other things. In the project it will handle and process all requests before sending them to the corresponding application server acting as a load balancer.
+
+For more information: https://www.nginx.com/
+
+## Kubernetes
+
+Also known as K8 is another example of open-source technology for automating deployments of containerised application. One of the benefits of this technology is that it is possible to dictate the desired state of the cluster. Once configures Kubernetes will automatically configure the containersin the cluster to the desired state.
+
+For more information: https://kubernetes.io/
+
+## Terraform
+
+THis is a solution aloows you to control the infrastructure on a cloud service provider. In this project Terraform will be controlling AWS. This will allow for Infrastructure as code where we can use high level programming languages to be able to describe and manage the infrastructure. This also means that infrastructure configurations can be versioned and maintained. Thus if another environment needs to be created, the configurations will be up to date.
+
+For more information: https://www.terraform.io/
+
 [Back to Contents](#Contents)
 
 ## Architecture
@@ -109,7 +169,7 @@ The picture above demonstrates how the MVP should be working at a high level. Te
     <img width="600" height="400" src="">
 </p>
 
-Jira is a useful tool that was selected as it supports roadmapping requirements. It empowers the user to sketch out the big picture, communicate plans and enables to connect the overarching bigger roadmap goals between each individual and team to deadlines and daily tasks. It is great for Agile Methodologies and can be integrated with other applications such as teams for easier monitoring of progress which shows just how customisable it can be. This flexibility is probably its largest positive feature as different approaches can be accommodated and companies can still work in a positive and efficient manner.
+
 My first sprint was very successful as I was able to complete all of my tasks such as completing the risk assessment and I was able spend more time on learning Java.  The second sprint lasted 2 weeks in which I have done a lot of coding of the application and have managed to complete the crud logic functionality on the backend. I am still currently in the process of making CRUD functionality available on the frontend, though I have been successful in create, read and delete functionality.
 
 [Back to Contents](#Contents)
