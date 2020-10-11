@@ -8,7 +8,7 @@
 Automation Project
 </h3>
 
-<p>This is project is to show the ability to automate a simple [Flask application](https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application), ready to be deployed, for the SFIA2 project.
+<p>This is project is to show the ability to automate a simple Flask Application, ready to be deployed, for the SFIA2 project.
 
 ## Contents
 
