@@ -26,7 +26,7 @@ Automation Project
     * [Testing](#Testing)
         * [Pytesting](#Pytesting)
 * [Known Issues Faced](#Known-Issues-Faced)
-* [Future Improvements & Possible Features](#Future-Improvements-&-Possible-Features)
+* [Future Improvements](#Future-Improvements)
 * [Author](#Author)
 
 
@@ -264,7 +264,7 @@ Results for the backend pytest
 
 [Back to Contents](#Contents)
 
-## Future Improvements & possible features
+## Future Improvements
 
 * Using Terraform to configure the Kubernetes Cluster for production
 * Using Terrafrom and Ansible to configure the Test VM
