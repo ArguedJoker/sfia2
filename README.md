@@ -53,7 +53,7 @@ The brief provided for the project sets the following out as the overall objecti
 * be deployed in a managed Kubernetes Cluster for production purposes
 * make use of a managed Database solution
 
-Please look at the [Project-Brief.md](https://github.com/ArguedJoker/sfia2/edit/developments/Project-Brief.md) for more information
+Please look at the [Project-Brief.md](https://github.com/ArguedJoker/sfia2/blob/developments/Project-Brief.md) for more information
 
 [Back to Contents](#Contents)
 ## Project Scope (Additional Requirements)
