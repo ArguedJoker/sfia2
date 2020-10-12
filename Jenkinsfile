@@ -144,6 +144,7 @@ EOF
                     aws eks get-token --cluster-name sfia2
                     kubectl apply -f infra/yml/
                     '''
+                    }
                 }
             }
         }
