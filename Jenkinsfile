@@ -7,7 +7,7 @@ pipeline{
         stages{
             stage('Install Docker and Docker-Compose'){
                 steps{
-                    withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'af3c8a26-65ac-4852-9693-a8572cfe5e37')]) {
+                    sshagent(['af3c8a26-65ac-4852-9693-a8572cfe5e37']) {
                         sh '''
                         ssh -t ubuntu@172.30.0.149<<EOF
                         curl https://get.docker.com | sudo bash 
