@@ -221,7 +221,7 @@ MoSCoW itself is an acronym where the capital letters are all derived from the f
 
 Before any work on the project is under way, it is important to assess the various risks that can affect successful completion. In the analysis I have included various risks that could affect each stage of the project ranging from SQL injections through to the likelihood of the risk and the impact.
 
-https://docs.google.com/spreadsheets/d/1t2-prSWoazSUeYOM_edqfVvreSCfYGyaql9sTPWwUKw/edit#gid=0
+https://docs.google.com/spreadsheets/d/1t2-prSWoazSUeYOM_edqfVvreSCfYGyaql9sTPWwUKw/edit?usp=sharing
 
 Note that the excel sheet has been added as additional information.
 
