@@ -183,7 +183,7 @@ To start off I had to plan how I wanted to approach the project requirements and
 * The second sprint was equally successful where I was able to write a lot of the architecture code and managed to set up docker, docker-compose and have Jenkins working with webhooks. At this time I was mainly using Google Cloud Platform to practice this.
 
 <p align="center">
-    <img width="600" height="400" src="/images/sprint1a.png">
+    <img width="600" height="400" src="/images/Sprint1Jenkins-Builds.png">
 </p>
 
 * The third sprint was focused on the transferring all the code to AWS and to utilise Ansible, Terraform and Kubernetes. 
