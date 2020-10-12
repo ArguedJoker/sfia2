@@ -13,9 +13,9 @@ Automation Project
 ## Contents
 
 * [Acknowledgements](#Acknowledgements)
-* [Licensing & versioning](#licensing-&-Versioning)
+* [Licensing & versioning](#Licensing-&-Versioning)
 * [Brief](#Brief)
-    * [Project Scope (Additional Requirements)](#Project-Scope-(Additional-Requirements))
+    * [Project Scope](#Project-Scope)
 * [Technologies](#Technologies)
 * [Architecture](#Architecture)  
 * [My Approach](#My-Approach)
@@ -23,11 +23,10 @@ Automation Project
     * [Project Tracking](#Project-Tracking)
     * [MoSCoW Analysis](#MOSCOW-Analysis)
     * [Risk Assessment](#Risk-Assessment)
-    * [Security](#Security)
     * [Testing](#Testing)
-        * [pytest](#Pytest)
+        * [Pytesting](#Pytesting)
 * [Known Issues Faced](#Known-Issues-Faced)
-* [Future Improvements & possible Features](#Future-Improvements-&-possible-features)
+* [Future Improvements & Possible Features](#Future-Improvements-&-Possible-Features)
 * [Author](#Author)
 
 
@@ -53,6 +52,8 @@ The brief provided for the project sets the following out as the overall objecti
 * to be deployed to a Virtual Machine for testing purposes
 * be deployed in a managed Kubernetes Cluster for production purposes
 * make use of a managed Database solution
+
+Please look at the [Project-Brief.md](https://github.com/ArguedJoker/sfia2/edit/developments/Project-Brief.md) for more information
 
 [Back to Contents](#Contents)
 ## Project Scope (Additional Requirements)
