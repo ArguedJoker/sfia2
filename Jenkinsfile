@@ -28,7 +28,7 @@ EOF
                             sh '''
                             ssh -t ubuntu@172.30.0.149 <<EOF
                             cd ~/sfia2/frontend
-                            docker build -t frontend . 
+                            docker build -t arguedjoker/frontend . 
 EOF
                             '''
                         }
@@ -42,7 +42,7 @@ EOF
                             sh '''
                             ssh ubuntu@172.30.0.149<<EOF
                             cd ~/sfia2/backend
-                            docker build -t backend . 
+                            docker build -t arguedjoker/backend .
 EOF
                             '''
                         }
