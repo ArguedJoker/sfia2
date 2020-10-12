@@ -8,7 +8,7 @@ pipeline{
             stage('Install Docker and Docker-Compose'){
                 steps{
                     sh '''
-                    ssh -t ubuntu@172.30.0.149 <<EOF
+                    ssh -t -o "StrictHostKeyChecking=no" ubuntu@172.30.0.149 <<EOF
                     curl https://get.docker.com | sudo bash 
                     sudo usermod -aG docker $(whoami)
                     sudo apt update
