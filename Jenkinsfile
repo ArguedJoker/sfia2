@@ -92,7 +92,7 @@ EOF
             stage('Setting up Testing environment with docker and docker-compose'){
                 steps{
                     sh'''
-                    ssh ubuntu@ip-172-30-0-98 <<EOF
+                    ssh ubuntu@172.30.0.149 <<EOF
                     curl https://get.docker.com | sudo bash 
                     sudo usermod -aG docker $(whoami)
                     sudo apt update
@@ -110,7 +110,7 @@ EOF
             stage('Front end Testing'){
                 steps{
                     sh '''
-                    ssh ubuntu@ip-172-30-0-98 <<EOF
+                    ssh ubuntu@172.30.0.149 <<EOF
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
@@ -127,7 +127,7 @@ EOF
             stage('Back end Testing'){
                 steps{
                     sh '''
-                    ssh ubuntu@ip-172-30-0-98 <<EOF
+                    ssh ubuntu@172.30.0.149 <<EOF
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
