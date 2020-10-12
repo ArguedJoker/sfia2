@@ -144,7 +144,9 @@ EOF
             }
             stage('Production Deployment'){
                 steps{
-
+                    sh '''
+                    echo "Prod"
+                    '''
                 }
             }
         }
