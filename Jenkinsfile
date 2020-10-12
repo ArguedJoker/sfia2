@@ -8,7 +8,7 @@ pipeline{
             stage('Install Docker and Docker-Compose'){
                 steps{
                     sh '''
-                    ssh -t -o "StrictHostKeyChecking=no" ubuntu@172.30.0.149 <<EOF
+                    ssh -o "StrictHostKeyChecking=no" ubuntu@172.30.0.149 <<EOF
                     curl https://get.docker.com | sudo bash 
                     sudo usermod -aG docker $(whoami)
                     sudo apt update
@@ -28,7 +28,9 @@ EOF
                             sh '''
                             ssh -t ubuntu@172.30.0.149 <<EOF
                             cd ~/sfia2/frontend
-                            docker build -t arguedjoker/frontend . 
+                            docker login --username=$DOCKER_USER --password=$DOCKER_PASS
+                            docker build -t arguedjoker/frontend .
+                            docker push arguedjoker/frontend
 EOF
                             '''
                         }
@@ -42,7 +44,9 @@ EOF
                             sh '''
                             ssh ubuntu@172.30.0.149<<EOF
                             cd ~/sfia2/backend
+                            docker login --username=$DOCKER_USER --password=$DOCKER_PASS
                             docker build -t arguedjoker/backend .
+                            docker push arguedjoker/backend
 EOF
                             '''
                         }
@@ -100,7 +104,7 @@ EOF
             stage('Front end Testing'){
                 steps{
                     sh '''
-                    ssh ubuntu@172.30.0.149 <<EOF
+                    ssh -t ubuntu@172.30.0.149 <<EOF
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
@@ -120,7 +124,7 @@ EOF
             stage('Back end Testing'){
                 steps{
                     sh '''
-                    ssh ubuntu@172.30.0.149 <<EOF
+                    ssh -t ubuntu@172.30.0.149 <<EOF
                     cd ~/sfia2
                     export TEST_DATABASE_URI="$TEST_DATABASE_URI"
                     export DATABASE_URI="$DATABASE_URI"
@@ -142,6 +146,7 @@ EOF
                     withAWS(credentials: 'aws', region: 'eu-west-2') {
                     sh '''
                     aws eks get-token --cluster-name sfia2
+                    aws eks update-kubeconfig  --name sfia2
                     kubectl apply -f infra/yml/
                     '''
                     }
