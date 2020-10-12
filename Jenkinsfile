@@ -8,7 +8,7 @@ pipeline{
             stage('Install Docker and Docker-Compose'){
                 steps{
                     sh '''
-                    ssh -t ubuntu@ip-172-30-0-80<<EOF
+                    ssh -t ubuntu@172.30.0.149<<EOF
                     curl https://get.docker.com | sudo bash 
                     sudo usermod -aG docker $(whoami)
                     sudo apt update
@@ -24,7 +24,7 @@ EOF
             stage('clone repository and cd into directory'){
                 steps{
                     sh '''
-                    ssh -t ubuntu@ip-172-30-0-80 <<EOF
+                    ssh -t ubuntu@172.30.0.149 <<EOF
                     git clone https://github.com/ArguedJoker/sfia2.git
                     cd sfia2
 EOF
@@ -36,7 +36,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh -t ubuntu@ip-172-30-0-80 <<EOF
+                            ssh -t ubuntu@172.30.0.149 <<EOF
                             cd ~/sfia2/frontend
                             docker build -t frontend . 
 EOF
@@ -50,7 +50,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh ubuntu@ip-172-30-0-80<<EOF
+                            ssh ubuntu@172.30.0.149<<EOF
                             cd ~/sfia2/backend
                             docker build -t backend . 
 EOF
@@ -65,7 +65,7 @@ EOF
                     script{
                         if (env.rollback == 'false'){
                             sh '''
-                            ssh ubuntu@ip-172-30-0-80<<EOF
+                            ssh ubuntu@172.30.0.149<<EOF
                             mkdir ~/sfia2/database
                             cd ~/sfia2/database
                             docker build -t mysql . 
@@ -78,7 +78,7 @@ EOF
             stage('Deploy App'){
                 steps{
                     sh '''
-                    ssh ubuntu@ip-172-30-0-80 <<EOF
+                    ssh ubuntu@172.30.0.149 <<EOF
                     cd ~/sfia2
                     export TEST_DATABASE_URI=$TEST_DATABASE_URI
                     export DATABASE_URI=$DATABASE_URI
