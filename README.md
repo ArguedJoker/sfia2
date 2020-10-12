@@ -89,6 +89,7 @@ With the idea of a minimum viable project (MVP):
 * Orchestration Tool: Kubernetes
 * Infrastructure Management: Terraform
 
+<details>
 ## Jira
 
 Jira is a useful tool that was selected as it supports roadmapping requirements. It empowers the user to sketch out the big picture, communicate plans and enables to connect the overarching bigger roadmap goals between each individual and team to deadlines and daily tasks. It is great for Agile Methodologies and can be integrated with other applications such as teams for easier monitoring of progress which shows just how customisable it can be. This flexibility is probably its largest positive feature as different approaches can be accommodated and companies can still work in a positive and efficient manner. A Jira board was to be used to help perform task management and project planning. This would serve to provide a record of any issues that were faced creating the project.
@@ -149,6 +150,8 @@ THis is a solution aloows you to control the infrastructure on a cloud service p
 
 For more information: https://www.terraform.io/
 
+</details>
+
 [Back to Contents](#Contents)
 
 ## Architecture
@@ -167,23 +170,27 @@ To start off I had to plan how I wanted to approach the project requirements and
 
 (Any issues I faced will be mentioned in the Known Issues Faced section)
 
-<p align="center">
-    <img width="600" height="400" src="">
-</p>
-
 [Back to Contents](#Contents)
 
 ## Project Tracking
 
+* My first sprint was very successful as I was able to complete all of my tasks at the time such as completing the risk assessment and I was able spend more time on learning the new technologies.  
+
 <p align="center">
-    <img width="600" height="400" src="">
+    <img width="600" height="400" src="/images/Sprint1.png">
 </p>
 
-* My first sprint was very successful as I was able to complete all of my tasks such as completing the risk assessment and I was able spend more time on learning Java.  
+* The second sprint was equally successful where I was able to write a lot of the architecture code and managed to set up docker, docker-compose and have Jenkins working with webhooks. At this time I was mainly using Google Cloud Platform to practice this.
 
-* The second sprint was equally successful where I was able to write a lot of the architecture code and managed to set up docker, docker-compose and have Jenkins working with webhooks. In this time I was mainly using Google Cloud Platform to practice this.
+<p align="center">
+    <img width="600" height="400" src="/images/sprint1a.png">
+</p>
 
 * The third sprint was focused on the transferring all the code to AWS and to utilise Ansible, Terraform and Kubernetes. 
+
+<p align="center">
+    <img width="600" height="400" src="/images/sprint2.png">
+</p>
 
 [Back to Contents](#Contents)
 
@@ -232,15 +239,23 @@ Risk Tolerance would dictate whether action would need to be taken or if the cur
 
 ## Testing
 
-### Pyesting
+### Pytesting
 
-Unit Testing is very important for any application creation. It is used to test small components (or units) within the application in controlled environments. In the project Pytest is used to execute the unit testing and the resulting information (frontend and backend) is cat into a document in the respective documents.
+Unit Testing is very important for any application creation. It is used to test small components (or units) within the application in controlled environments. In the project Pytest is used to execute the unit testing and the resulting information (frontend and backend) is cat into respective txt files.
 
-[testing result pictures here]
+<p align="center">
+    <img width="600" height="400" src="/images/frontendpytest.png">
+</p>
+
+Results for the frontend pytest
+
+<p align="center">
+    <img width="600" height="400" src="/images/backendpytest.png">
+</p>
+
+Results for the backend pytest
 
 [Back to Contents](#Contents)
-
-
 
 ## Known Issues Faced
 
