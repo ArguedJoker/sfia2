@@ -207,8 +207,8 @@ MoSCoW itself is an acronym where the capital letters are all derived from the f
 
 | Must Have                                             | Should Have                                            | Could Have | Won't Have |
 |-------------------------------------------------------|--------------------------------------------------------|------------|------------|
-| Containerisation tools to deploy application          | Pytest must be put in document for reading             | Terraform and Ansible to configure test VM           |            | 
-| Orchestration tools to deploy application             |                                                        | Terraform to configure the Kubernetes Cluster           |            |
+| Containerisation tools to deploy application          | Pytest must be put in document for reading             |           |     Terraform and Ansible to configure test VM        | 
+| Orchestration tools to deploy application             |                                                        |            |    Terraform to configure the Kubernetes Cluster        |
 | Two managed Database Servers (testing and production) |                                                        |            |            |
 | Webhooks so that Jenkins recreates and redeploys      |                                                        |            |            |
 | Ansible Playbook to provision the CI server           |                                                        |            |            |
