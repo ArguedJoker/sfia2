@@ -28,7 +28,7 @@ EOF
                             sh '''
                             ssh -t ubuntu@172.30.0.149 <<EOF
                             cd ~/sfia2/frontend
-                            docker login --username=$DOCKER_USER --password=$DOCKER_PASS
+                            docker login --username="$DOCKER_USER" --password="$DOCKER_PASS"
                             docker build -t arguedjoker/frontend .
                             docker push arguedjoker/frontend
 EOF
@@ -44,7 +44,7 @@ EOF
                             sh '''
                             ssh ubuntu@172.30.0.149<<EOF
                             cd ~/sfia2/backend
-                            docker login --username=$DOCKER_USER --password=$DOCKER_PASS
+                            docker login --username="$DOCKER_USER" --password="$DOCKER_PASS"
                             docker build -t arguedjoker/backend .
                             docker push arguedjoker/backend
 EOF
