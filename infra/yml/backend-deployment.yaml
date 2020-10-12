@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: backend
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../../docker-compose.yaml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        service: backend
+    spec:
+      containers:
+      - env:
+        - name: RDS_URL
+          value: "test.crakgby7xw3b.eu-west-2.rds.amazonaws.com"
+        - name: DATABASE_URI
+          value: "mysql+pymysql://admin:password@sfia2-rds.crakgby7xw3b.eu-west-2.rds.amazonaws.com:3306/users"
+        - name: SECRET_KEY
+          value: "password"
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
+        - name: TEST_DATABASE_URI
+          value: "mysql+pymysql://admin:password@sfia2-rds.crakgby7xw3b.eu-west-2.rds.amazonaws.com:3306/testdb"
+        image: arguedjoker/backend
+        imagePullPolicy: ""
+        name: backend
+        resources: {}
+        ports:
+        - containerPort: 5001
+          protocol: TCP
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

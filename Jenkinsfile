@@ -20,17 +20,7 @@ pipeline{
 EOF
                         '''
                 }
-            }
-            stage('clone repository and cd into directory'){
-                steps{
-                    sh '''
-                    ssh -t ubuntu@172.30.0.149 <<EOF
-                    git clone --single-branch --branch development https://github.com/ArguedJoker/sfia2.git
-                    cd sfia2
-EOF
-                    '''
-                }
-            }    
+            }  
             stage('Build Frontend Image'){
                 steps{
                     script{
@@ -149,8 +139,10 @@ EOF
             }
             stage('Production Deployment'){
                 steps{
+                    withAWS(credentials: 'aws', region: 'eu-west-2') {
                     sh '''
-                    echo "Prod"
+                    aws eks get-token --cluster-name sfia2
+                    kubectl apply -f infra/yml/
                     '''
                 }
             }

@@ -1,3 +1,9 @@
 /venv/
 **/**/__pycache__/
 **/**/.coverage
+
+**/**/*.pem
+**/**/jenkins-ci.ini
+
+**/**/.terraform
+**/**/terraform.tfstate*
