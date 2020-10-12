@@ -117,6 +117,8 @@ EOF
                     export SECRET_KEY="$SECRET_KEY"
                     export MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
                     export BACKEND_URL="$BACKEND_URL"
+                    docker-compose down
+                    docker-compose build
                     docker-compose up -d
                     sleep 20
                     cd frontend/tests
@@ -134,6 +136,9 @@ EOF
                     export DATABASE_URI="$DATABASE_URI"
                     export SECRET_KEY="$SECRET_KEY"
                     export MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
+                    export BACKEND_URL="$BACKEND_URL"
+                    docker-compose down
+                    docker-compose build
                     docker-compose up -d
                     sleep 20
                     cd backend/tests

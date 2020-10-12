@@ -9,3 +9,12 @@ CREATE TABLE `users` (
 );
 
 INSERT INTO `users` VALUES ('Bob'),('Jay'),('Matt'),('Ferg'),('Mo'), ('Rohan');
+
+USE testdb;
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `userName` varchar(30) NOT NULL
+);
+INSERT INTO `users` VALUES ('Bob'),('Jay'),('Matt'),('Ferg'),('Mo'), ('Rohan');
