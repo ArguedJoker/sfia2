@@ -25,7 +25,7 @@ EOF
                 steps{
                     sh '''
                     ssh -t ubuntu@172.30.0.149 <<EOF
-                    git clone https://github.com/ArguedJoker/sfia2.git
+                    git clone --single-branch --branch development https://github.com/ArguedJoker/sfia2.git
                     cd sfia2
 EOF
                     '''
@@ -102,7 +102,7 @@ EOF
                     sudo chmod +x /usr/local/bin/docker-compose
                     sudo chmod 666 /var/run/docker.sock
                     rm -rf ~/sfia2
-                    git clone https://github.com/ArguedJoker/sfia2.git
+                    git clone --single-branch --branch development https://github.com/ArguedJoker/sfia2.git
 EOF
                     '''
                 }
