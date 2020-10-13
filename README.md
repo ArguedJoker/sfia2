@@ -90,7 +90,10 @@ With the idea of a minimum viable project (MVP):
 * Orchestration Tool: Kubernetes
 * Infrastructure Management: Terraform
 
+Please click on details for a more in depth overview of each technology that was used. 
+
 <details>
+
 ## Jira
 
 Jira is a useful tool that was selected as it supports roadmapping requirements. It empowers the user to sketch out the big picture, communicate plans and enables to connect the overarching bigger roadmap goals between each individual and team to deadlines and daily tasks. It is great for Agile Methodologies and can be integrated with other applications such as teams for easier monitoring of progress which shows just how customisable it can be. This flexibility is probably its largest positive feature as different approaches can be accommodated and companies can still work in a positive and efficient manner. A Jira board was to be used to help perform task management and project planning. This would serve to provide a record of any issues that were faced creating the project.
@@ -99,7 +102,7 @@ For more information: https://www.atlassian.com/software/jira/features
 
 ## Git 
 
-Git is a distributed Version Control System where developers can put their code into repositories. Github holds these repositories. 
+Git is a distributed Version Control System where developers can put their code into repositories. Github holds these repositories. It works very well with jenkins for the project when getting webhooks to save me time from running a build.
 
 For more information: https://git-scm.com/
 
@@ -111,7 +114,7 @@ For more information: https://en.wikipedia.org/wiki/Jenkins_(software)
 
 ## Ansible
 
-Another open-source software that is useful for provisioning, configuration management, and application-deployment tool. It can run on and configure many unix like systems and windows. It utilises YAML language which is used to write ansible playbooks. It is extremely powerful because it can spin up many hundereds of nodes at any time because Ansible itself is agentless. This means that its operations only push out only what nodes need to see. It uses SSH to push changes from a single source to multiple remote resources for linus and unix machines.
+Another open-source software that is useful for provisioning, configuration management, and application-deployment tool. It can run on and configure many unix like systems and windows. It utilises YAML language which is used to write ansible playbooks. It is extremely powerful because it can spin up many hundereds of nodes at any time because Ansible itself is agentless. This means that its operations only push out only what nodes need to see. It uses SSH to push changes from a single source to multiple remote resources for linux and unix machines.
 
 For more information: https://www.ansible.com/
 
@@ -129,15 +132,21 @@ For more information: https://aws.amazon.com/rds/
 
 ## Docker
 
-An open-source containerisation tool, docker is a useful solution for differing system enviorments, providing the ability to keep environments consistent. In the project Docker is used to build and create images which can be sent to dockerhub.
+An open-source containerisation tool, docker is a useful solution for differing system enviorments, providing the ability to keep environments consistent. In the project Docker is used to build and create images which can be sent to dockerhub a remote registry. This provides a solution to the limitations of Virtual machines through containerisation or the ability to deploy several contained images within a container.
 
 For more information: https://www.docker.com/
 
 ## NGINX
 
-This is a web server that is used as a reverse proxy, load balancer and many other things. In the project it will handle and process all requests before sending them to the corresponding application server acting as a load balancer.
+This is a web server that is used as a reverse proxy, load balancer and many other things. In the project it will handle and process all requests before sending them to the corresponding application server acting as a load balancer and decreasing the chance of port exposure by only exposing noe port. This was used for learning purposes and was eventually swapped out for NGINX Ingress Controller which is a built in feature of kubernetes.
 
 For more information: https://www.nginx.com/
+
+## NGINX Ingress Controller
+
+The ingress controller is an applciation that runs in a cluster and configures the HTTP load balancer. With NGINX, the Ingress controller is deployed in a pod along witht he load balancer. This allows Kubernetes to configure NGINX for load balancing its services. This allowed for Kubernetes to work with AWS instances. Just using NGINX led to issues which could not be resolved within the time span of the project.
+
+For more information: https://www.nginx.com/products/nginx/kubernetes-ingress-controller/
 
 ## Kubernetes
 
@@ -147,7 +156,7 @@ For more information: https://kubernetes.io/
 
 ## Terraform
 
-THis is a solution aloows you to control the infrastructure on a cloud service provider. In this project Terraform will be controlling AWS. This will allow for Infrastructure as code where we can use high level programming languages to be able to describe and manage the infrastructure. This also means that infrastructure configurations can be versioned and maintained. Thus if another environment needs to be created, the configurations will be up to date.
+This is a solution aloows you to control the infrastructure on a cloud service provider. In this project Terraform will be controlling AWS. This will allow for Infrastructure as code where we can use high level programming languages to be able to describe and manage the infrastructure. This also means that infrastructure configurations can be versioned and maintained. Thus if another environment needs to be created, the configurations will be up to date.
 
 For more information: https://www.terraform.io/
 
@@ -159,7 +168,7 @@ For more information: https://www.terraform.io/
 
 ![mvp-diagram](https://i.imgur.com/i5qfOas.png)
 
-The picture above demonstrates how the MVP should be working at a high level. Terraform should spin up some virtual machines for Jenkins, the Testing Database and Production Database. Ansible a powerful tool for automation would then install and configure Jenkins with a user in the virtual machine through ansible-playbooks. When the codebase is edited in the development branch, Jenkins would detect this through Webhooks and would push this to the testing environment where the python application would then have to pass unit tests made by pytests. Once passed, the automation would continue and merge the Development branch to master which would be detected by Jenkins. The CI pipeline would then push the build from master to the production environment. The user would be able to see the frontend of the application on port 80 because of reverse proxy that was enabled by NGINX.
+The picture above demonstrates how the MVP should be working at a high level. Terraform will spin up virtual AWS instances for Jenkins, the Testing Database the two RDS. Ansible a powerful tool for automation would then install and configure Jenkins with a user in the virtual machine through ansible-playbooks and configure the Test Database. When the codebase is edited in the development branch, Jenkins would detect this through Webhooks and would push this to the testing environment where the python application would then have to pass unit tests made by pytests. Once passed, the automation would continue and merge the Development branch to master which would be detected by Jenkins. The CI pipeline would then push the build from master to the production environment. The user would be able to see the frontend of the application on port 80 because of reverse proxy that was enabled by NGINX. All the VM's would have to be accessed through SSH which involved ensuriing that key pair were recognised between the VMs.
 
 [Back to Contents](#Contents)
 
@@ -261,6 +270,8 @@ Results for the backend pytest
 ## Known Issues Faced
 
 * Whilst leasrning with GCP, I did come across a lot of host verification errors or permission errors. This is because of the security feature in GCP VMs which will forget the public key after a certain amount of time. I would have to put the public key back into the authorized key in the appropriate VM. This was particularly infuriating when testing for Jenkins and was a large part of the reason why I decided on making the switch to AWS as it is more mature, with better documentation.
+
+* NGINX was very good with GCP but when transferring all the cod eto utilise AWS and Kubernetes, a lot of issues arose and due to time constraints, I used NGINX Ingress which is effectively NGINX built into Kubernetes (or NGINX in a Pod). 
 
 [Back to Contents](#Contents)
 
