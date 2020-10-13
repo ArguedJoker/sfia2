@@ -277,7 +277,7 @@ Results for the backend pytest
 
 * Whilst leasrning with GCP, I did come across a lot of host verification errors or permission errors. This is because of the security feature in GCP VMs which will forget the public key after a certain amount of time. I would have to put the public key back into the authorized key in the appropriate VM. This was particularly infuriating when testing for Jenkins and was a large part of the reason why I decided on making the switch to AWS as it is more mature, with better documentation.
 
-* NGINX was very good with GCP but when transferring all the cod eto utilise AWS and Kubernetes, a lot of issues arose and due to time constraints, I used NGINX Ingress which is effectively NGINX built into Kubernetes (or NGINX in a Pod). 
+* NGINX was very good with GCP but when transferring all the code to utilise AWS and Kubernetes, a lot of issues arose and due to time constraints, I used NGINX Ingress which is effectively NGINX built into Kubernetes (or NGINX in a Pod) that facilitated the NGINX configuration to make the app accessible to users.
 
 [Back to Contents](#Contents)
 
