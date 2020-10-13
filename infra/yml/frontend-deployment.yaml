@@ -16,10 +16,6 @@ spec:
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert -f ../../docker-compose.yaml
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
         service: frontend
     spec:
@@ -28,7 +24,7 @@ spec:
         - name: BACKEND_URL
           value: "http://a317c0b7f12ad4fe195471ad4d3a6188-57424215.eu-west-2.elb.amazonaws.com/backend"
         image: arguedjoker/frontend
-        imagePullPolicy: "Always"
+        imagePullPolicy: Always
         name: frontend
         resources: {}
       restartPolicy: Always

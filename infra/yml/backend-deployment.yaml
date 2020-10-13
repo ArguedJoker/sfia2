@@ -32,7 +32,7 @@ spec:
         - name: TEST_DATABASE_URI
           value: "mysql+pymysql://admin:password@sfia2-rds.crakgby7xw3b.eu-west-2.rds.amazonaws.com:3306/testdb"
         image: arguedjoker/backend
-        imagePullPolicy: "Always"
+        imagePullPolicy: Always
         name: backend
         resources: {}
         ports:

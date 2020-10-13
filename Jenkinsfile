@@ -148,6 +148,7 @@ EOF
                     aws eks get-token --cluster-name sfia2
                     aws eks update-kubeconfig  --name sfia2
                     kubectl apply -f infra/yml/
+                    kubectl rollout restart deployment frontend backend
                     '''
                     }
                 }
