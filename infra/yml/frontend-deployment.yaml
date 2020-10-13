@@ -26,8 +26,8 @@ spec:
       containers:
       - env:
         - name: BACKEND_URL
-          value: "http://a2bb40571303a48d1880c310564c608e-883601554.eu-west-2.elb.amazonaws.com/backend"
-        image: snowsky/frontend
+          value: "http://a317c0b7f12ad4fe195471ad4d3a6188-57424215.eu-west-2.elb.amazonaws.com/backend"
+        image: arguedjoker/frontend
         imagePullPolicy: ""
         name: frontend
         resources: {}
