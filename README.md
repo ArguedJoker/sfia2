@@ -10,6 +10,12 @@ Automation Project
 
 <p>This is project is to show the ability to automate a simple Flask Application, ready to be deployed, for the SFIA2 project.
 
+## Resources
+
+JIRA: https://chauhan.atlassian.net/secure/RapidBoard.jspa?rapidView=3&projectKey=S2&selectedIssue=S2-18&assignee=5f2bfd70c9c094001cabfbc5&assignee=UNASSIGNED_USER_ID
+
+Note that other resources are marked with "for more information: [link]
+
 ## Contents
 
 * [Acknowledgements](#Acknowledgements)
@@ -70,7 +76,7 @@ The project involved the following concepts:
 With the idea of a minimum viable project (MVP):
 
 * the application had to be deployed using containerisation and orchestration tools such as docker and kubernetes and Jenkins to provide the CI pipeline that would enable testing on the application. 
-* The project had to make sue of two managed Database Servers - one for testing and the other for production. 
+* The project had to make use of two managed Database Servers - one for testing and the other for production. 
 * Ansible would be used to provision the environment that the CI server would need to run and make use of NGINX of a reverse proxy so that the application was accessible to the user. 
 * If a change is made to the code base, webhooks should be used so that Jenkins would recreate and redeploy the changed applications.
 
@@ -138,19 +144,19 @@ For more information: https://www.docker.com/
 
 ## NGINX
 
-This is a web server that is used as a reverse proxy, load balancer and many other things. In the project it will handle and process all requests before sending them to the corresponding application server acting as a load balancer and decreasing the chance of port exposure by only exposing noe port. This was used for learning purposes and was eventually swapped out for NGINX Ingress Controller which is a built in feature of kubernetes.
+This is a web server that is used as a reverse proxy, load balancer and many other things. In the project it will handle and process all requests before sending them to the corresponding application server acting as a load balancer and decreasing the chance of port exposure by only exposing one port. This was used for learning purposes and was eventually swapped out for NGINX Ingress Controller which is a built in feature of kubernetes.
 
 For more information: https://www.nginx.com/
 
 ## NGINX Ingress Controller
 
-The ingress controller is an applciation that runs in a cluster and configures the HTTP load balancer. With NGINX, the Ingress controller is deployed in a pod along witht he load balancer. This allows Kubernetes to configure NGINX for load balancing its services. This allowed for Kubernetes to work with AWS instances. Just using NGINX led to issues which could not be resolved within the time span of the project.
+The ingress controller is an applciation that runs in a cluster and configures the HTTP load balancer. With NGINX, the Ingress controller is deployed in a pod along with the load balancer. This allows Kubernetes to configure NGINX for load balancing its services. This allowed for Kubernetes to work with AWS instances. Just using NGINX led to issues which could not be resolved within the time span of the project.
 
 For more information: https://www.nginx.com/products/nginx/kubernetes-ingress-controller/
 
 ## Kubernetes
 
-Also known as K8 is another example of open-source technology for automating deployments of containerised application. One of the benefits of this technology is that it is possible to dictate the desired state of the cluster. Once configures Kubernetes will automatically configure the containersin the cluster to the desired state.
+Also known as K8 is another example of open-source technology for automating deployments of containerised application. One of the benefits of this technology is that it is possible to dictate the desired state of the cluster. Once configured Kubernetes will automatically configure the containers in the cluster to the desired state.
 
 For more information: https://kubernetes.io/
 
@@ -168,7 +174,7 @@ For more information: https://www.terraform.io/
 
 ![mvp-diagram](https://i.imgur.com/i5qfOas.png)
 
-The picture above demonstrates how the MVP should be working at a high level. Terraform will spin up virtual AWS instances for Jenkins, the Testing Database the two RDS. Ansible a powerful tool for automation would then install and configure Jenkins with a user in the virtual machine through ansible-playbooks and configure the Test Database. When the codebase is edited in the development branch, Jenkins would detect this through Webhooks and would push this to the testing environment where the python application would then have to pass unit tests made by pytests. Once passed, the automation would continue and merge the Development branch to master which would be detected by Jenkins. The CI pipeline would then push the build from master to the production environment. The user would be able to see the frontend of the application on port 80 because of reverse proxy that was enabled by NGINX. All the VM's would have to be accessed through SSH which involved ensuriing that key pair were recognised between the VMs.
+The picture above demonstrates how the MVP should be working at a high level. Terraform will spin up virtual AWS instances for Jenkins, the Testing Database and two RDS Instances. Ansible a powerful tool for automation would then install and configure Jenkins with a user in the virtual machine through ansible-playbooks and configure the Test Database. When the codebase is edited in the development branch, Jenkins would detect this through Webhooks and would push this to the testing environment where the python application would then have to pass unit tests made by pytests. Once passed, the automation would continue and merge the Development branch to master which would be detected by Jenkins. The CI pipeline would then push the build from master to the production environment. The user would be able to see the frontend of the application on port 80 because of reverse proxy that was enabled by NGINX. All the VM's would have to be accessed through SSH which involved ensuring that key pair were recognised between the VMs.
 
 [Back to Contents](#Contents)
 
@@ -196,7 +202,7 @@ To start off I had to plan how I wanted to approach the project requirements and
     <img width="600" height="400" src="/images/Jenkins-Builds.png">
 </p>
 
-* The third sprint was focused on the transferring all the code to AWS and to utilise Ansible, Terraform and Kubernetes. 
+* The third sprint was focused on the transferring all the code to AWS and to utilise Ansible, Terraform and Kubernetes. This part had the largest learning curb of all but I really enjoyed the challenge.
 
 <p align="center">
     <img width="600" height="400" src="/images/sprint2.png">
